@@ -1,5 +1,5 @@
-# Tayori
-Tayori はマークダウンベースの記事を管理するCMSです。
+# blog-system-main
+blog-system-main はマークダウンベースの記事を管理するCMSです。
 
 ## Command
 `npm run dev` >> 起動（開発環境）<br>
