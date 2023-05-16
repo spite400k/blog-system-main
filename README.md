@@ -7,7 +7,7 @@ blog-system-main はマークダウンベースの記事を管理するCMSです
 
 
 ## How to start
-Tayoriはバックエンドを[Firebase](https://firebase.google.com/?hl=ja)に丸投げしています。そのため、環境変数へ必要な`Firebase`の認証情報を与えてデプロイをすれば問題なく動きます。<br>
+blog-system-mainはバックエンドを[Firebase](https://firebase.google.com/?hl=ja)に丸投げしています。そのため、環境変数へ必要な`Firebase`の認証情報を与えてデプロイをすれば問題なく動きます。<br>
 ここでは、その必要な変数を取得する手順を記しています。
 
 ### 1.Firebase プロジェクトの作成
@@ -40,7 +40,7 @@ const analytics = getAnalytics(app);
 
 
 ### 2. Authentication の開始
-`Tayori`にて`パスワード認証`を採用しています。
+`blog-system-main`にて`パスワード認証`を採用しています。
 [「JavaScript でパスワード ベースのアカウントを使用して Firebase 認証を行う」](https://firebase.google.com/docs/auth/web/password-auth?hl=ja)の **始める前に** の手順を実施してパスワード認証を有効化します。<br>
 
 ### 3.Firestore の開始
@@ -77,7 +77,7 @@ service firebase.storage {
 [「SDKの初期化」](https://firebase.google.com/docs/admin/setup?hl=ja#initialize-sdk)を参考に秘密鍵を生成します。jsonファイルがダウンロードできれば完了です。
 
 ### 6. 環境変数の設定
-以上の手順で`Firebase`上で必要な準備は完了しました。最後に`Tayori`に環境変数を設定します。
+以上の手順で`Firebase`上で必要な準備は完了しました。最後に`blog-system-main`に環境変数を設定します。
 |環境変数名|コピー元|コピー項目名|
 |-----|-----|-----|
 |NEXT_PUBLIC_FIREBASE_API_KEY|firebaseConfig|apiKey|
@@ -105,7 +105,7 @@ service firebase.storage {
 開発環境の場合は、`npm run dev`で起動。<br>
 
 ## 投稿の取得方法
-`Tayori`で作成した投稿は、`Tayori`で修正する他、APIを叩くことで任意の場所で取得することができます。<br>
+`blog-system-main`で作成した投稿は、`blog-system-main`で修正する他、APIを叩くことで任意の場所で取得することができます。<br>
 |エンドポイント|例|詳細|
 |-------|-------|------|
 |`TAYORI-DOMAIN`/api/post|`https://your-tayori.com/api/post`|公開している全投稿を取得します|
