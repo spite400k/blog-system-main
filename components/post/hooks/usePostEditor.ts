@@ -5,6 +5,7 @@ import { upload } from 'components/storage/utils/upload'
 import { useNotification } from 'components/notification/hooks/useNotification'
 import { errorList } from 'components/storage/utils/error'
 import { messageList } from 'components/storage/utils/message'
+import { compressImage } from "../utils/compress"
 
 export const usePostEditor = () => {
   const [uploadInfo, setUploadInfo] = useRecoilState(postImageUploadState)
@@ -20,7 +21,9 @@ export const usePostEditor = () => {
       // upload start
       setUploading(true)
 
-      const info = await upload('article', file)
+      const compressedFile = await compressImage(file);
+
+      const info = await upload('article', compressedFile)
 
       // set upload image
       // eslint-disable-next-line no-throw-literal
