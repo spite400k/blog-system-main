@@ -186,16 +186,18 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
               height={'100%'}
               transform={isPreview ? 'translateY(1em)' : 'translateY(0)'}
             >
-              <SimpleMde 
-                value={props.post.markdown ?? ''}
-                // onChange={(value) => {
-                //   setMarkdown(value);
-                // }}
-                onChange={(value) => (props.post.markdown = value)}
-                // options={autoUploadImage}
-                events={{ drop: handleDrop, paste: handlePaste }}
-                ref={areaRef}
-              />
+              <div align={'center'}>
+                <SimpleMde 
+                  value={props.post.markdown ?? ''}
+                  // onChange={(value) => {
+                  //   setMarkdown(value);
+                  // }}
+                  onChange={(value) => (props.post.markdown = value)}
+                  // options={autoUploadImage}
+                  events={{ drop: handleDrop, paste: handlePaste }}
+                  ref={areaRef}
+                  />
+              </div>
             </TransformBox>
           </ColorBox>
         </ColorBox>
