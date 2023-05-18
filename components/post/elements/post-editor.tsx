@@ -112,7 +112,26 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
           });
         }
     };
-
+  
+  const toolbar = [
+    '|',
+    'undo',
+    'redo',
+    '|',
+    'bold',
+    'italic',
+    'heading',
+    'strikethrough',
+    'code',
+    '|',
+    'quote',
+    'unordered-list',
+    'ordered-list',
+    'table',
+    'horizontal-rule',
+    '|',
+    'link',
+]
 
   useEffect(() => {
     setMarkdown(props.post.markdown ?? '')
@@ -194,7 +213,13 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
                   onChange={(value) => (props.post.markdown = value)}
                   // options={autoUploadImage}
                   events={{ drop: handleDrop, paste: handlePaste }}
-                  ref={areaRef}
+                ref={areaRef}
+                options={{
+                  toolbar: toolbar,
+                  minHeight: "500px",
+                  autofocus: true,
+                  spellChecker: false,
+                }}
                   />
             </TransformBox>
           </ColorBox>
