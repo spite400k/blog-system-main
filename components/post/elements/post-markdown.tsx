@@ -1,19 +1,36 @@
-// import { gen } from 'middle'
+import { FC, useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import CodeBlock from "./CodeBlock";
+import MdImage from "./MdImage";
+
 import { Post } from 'post/types/post'
 import matter from 'gray-matter';
 import { marked } from 'marked';
 
 export const PostMarkdown = (props: { post: Post }) => {
-  // console.log(tokens)
-  // const elements = gen(props.post.markdown ?? '', {
-  //   img: 'md-img',
-  //   p: 'md-p',
-  //   a: 'md-a',
-  //   blockquote: 'md-bq',
-  //   pre: 'md-pre',
-  //   code: 'tokyo-night-dark'
-  // })
-      console.log('props.post.markdown:', props.post.markdown);
+
+    const [markdown, setMarkdown] = useState("");
+
+  useEffect(() => {
+    fetch(`/articles/test.md`)
+      .then((m) => {
+        return m.text();
+      })
+      .then((md) => {
+        setMarkdown(md);
+      });
+  }, []);
+
   const { data, content } = matter(props.post.markdown ?? '');
-  return <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
+  return (
+        <ReactMarkdown
+          components={{
+            code: CodeBlock,
+            img: MdImage,
+          }}
+        >
+          {content}
+        </ReactMarkdown>
+      );
+  
 }

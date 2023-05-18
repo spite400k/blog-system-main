@@ -43,7 +43,7 @@ export const usePostEditor = () => {
 
   const onInsertImgMarkdown = (
     markdown: string,
-    area: HTMLTextAreaElement,
+    area: HTMLDivElement,
     areaLeavePos: number
   ) => {
     if (uploadInfo.url === '') return markdown
@@ -54,23 +54,24 @@ export const usePostEditor = () => {
     const isLF = (charCode: number) => charCode === 10
     const onFocusArea = (newImgMdLength: number) => {
       insertPos += newImgMdLength
-      area.selectionEnd = insertPos
-      area.focus()
+      // area.selectionEnd = insertPos
+      // area.focus()
     }
 
     while (insertPos <= markdown.length) {
       if (insertPos === markdown.length) {
         const newImgLine = `\n![${uploadInfo.name}](${uploadInfo.url})`
         newMarkdown = `${markdown}${newImgLine}`
-        area.value = newMarkdown
+        // area.value = newMarkdown
         onFocusArea(newImgLine.length)
       }
       if (isLF(markdown.charCodeAt(insertPos))) {
-        const newImgLine = `![${uploadInfo.name}](${uploadInfo.url})\n`
-        const beforeImgLine = area.value.slice(0, insertPos + 1)
-        const afterImgLine = area.value.slice(insertPos + 1)
-        newMarkdown = `${beforeImgLine}${newImgLine}${afterImgLine}`
-        area.value = newMarkdown
+        const newImgLine = `\n![${uploadInfo.name}](${uploadInfo.url})`
+        // const beforeImgLine = area.value.slice(0, insertPos + 1)
+        // const afterImgLine = area.value.slice(insertPos + 1)
+        // newMarkdown = `${beforeImgLine}${newImgLine}${afterImgLine}`
+        newMarkdown = `${markdown}${newImgLine}`
+        // area.value = newMarkdown
         onFocusArea(newImgLine.length)
         break
       } else {
