@@ -186,7 +186,6 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
               height={'100%'}
               transform={isPreview ? 'translateY(1em)' : 'translateY(0)'}
             >
-              <div align={'center'}>
                 <SimpleMde 
                   value={props.post.markdown ?? ''}
                   // onChange={(value) => {
@@ -197,7 +196,6 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
                   events={{ drop: handleDrop, paste: handlePaste }}
                   ref={areaRef}
                   />
-              </div>
             </TransformBox>
           </ColorBox>
         </ColorBox>
@@ -214,4 +212,6 @@ const PostEditorBox = styled.div<{ background: string }>`
   border-radius: 15px;
   background: ${(props) => props.background};
   // border: solid 3px #131315;
+  text-align: center;
+  white-space: pre-wrap;
 `
