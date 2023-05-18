@@ -6,12 +6,15 @@ import { useTheme } from 'shared/hooks/useTheme'
 import { moduler } from 'shared/utils/styles'
 import styled from 'styled-components'
 import { TransformBox } from 'shared/elements/box/transform'
-import { useEffect, useRef, useState, MutableRefObject } from 'react'
+import { useEffect, useRef, useState, useMemo, MutableRefObject } from 'react'
 import { usePostEditor } from 'post/hooks/usePostEditor'
 import { PostMarkdown } from './post-markdown'
 import { Box } from 'shared/elements/box/common'
-import SimpleMde from "react-simplemde-editor";
+// import SimpleMde from "react-simplemde-editor";
+import dynamic from "next/dynamic";
+const SimpleMde = dynamic(() => import("react-simplemde-editor"), { ssr: false });
 import "easymde/dist/easymde.min.css";
+
 
 
 export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
@@ -25,7 +28,33 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   const [, setMarkdown] = useState<string>(props.post.markdown ?? '')
   // const [markdown, setMarkdown] = useState(props.post.markdown ?? '')
 
-  
+  // 画像をアップロードする処理
+  const imageUploadFunction = (file) => {
+    // 保存先の参照を作成
+    const storage = firebase.storage();
+    const storageRef = storage.ref(`images`);
+    const imagesRef = storageRef.child(file.name);
+    // 画像をアップロード
+    const upLoadTask = imagesRef.put(file);
+    // エラー処理や画像の保存が完了した後の処理
+    upLoadTask.on(
+      "state_changed",
+      (snapshot) => {
+        console.log("snapshot", snapshot);
+      },
+      (error) => {
+        console.log("エラーが発生しました", error);
+      },
+      () => {
+        upLoadTask.snapshot.ref.getDownloadURL().then((downloadURL: string) => {
+          // アップロードしたURLを取得してマークダウンに埋め込む
+          setMarkdown((preMardown) => {
+            return preMardown + `![image](${downloadURL})`;
+          });
+        });
+      });
+    };
+
   useEffect(() => {
     setMarkdown(props.post.markdown ?? '')
   }, [isPreview])
@@ -41,6 +70,13 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
     setMarkdown(props.post.markdown)
   }, [uploadInfo])
 
+  // エディタの設定
+  const autoUploadImage = useMemo(() => {
+    return {
+      uploadImage: true,
+      imageUploadFunction,
+    };
+  }, []);
   return (
     <PostEditorBox background={theme.color.gray06}>
       <BorderBox
@@ -96,6 +132,7 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
                 //   setMarkdown(value);
                 // }}
                 onChange={(value) => (props.post.markdown = value)}
+                options={autoUploadImage}
               />
             </TransformBox>
           </ColorBox>
