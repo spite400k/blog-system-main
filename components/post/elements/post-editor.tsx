@@ -83,6 +83,7 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
         if (
             file.type === "image/png" ||
             file.type === "image/jpeg" ||
+            file.type === "image/heic" ||
             file.type === "image/gif"
         ) {
         const file = files[0];
