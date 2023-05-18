@@ -10,6 +10,9 @@ import { useEffect, useRef, useState, MutableRefObject } from 'react'
 import { usePostEditor } from 'post/hooks/usePostEditor'
 import { PostMarkdown } from './post-markdown'
 import { Box } from 'shared/elements/box/common'
+import SimpleMde from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
+
 
 export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   const { isPreview, uploadInfo, onInsertImgMarkdown } = usePostEditor()
@@ -18,8 +21,11 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
     props.post.markdown ? props.post.markdown.length : 0
   )
   const areaRef = useRef() as MutableRefObject<HTMLTextAreaElement>
-  const [, setMarkdown] = useState(props.post.markdown ?? '')
+  // マークダウンタブ追加
+  const [, setMarkdown] = useState<string>(props.post.markdown ?? '')
+  // const [markdown, setMarkdown] = useState(props.post.markdown ?? '')
 
+  
   useEffect(() => {
     setMarkdown(props.post.markdown ?? '')
   }, [isPreview])
@@ -84,19 +90,12 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
               height={'100%'}
               transform={isPreview ? 'translateY(1em)' : 'translateY(0)'}
             >
-              <Area
-                width={'100%'}
-                height={'100%'}
-                font={{ size: moduler(-0.5) }}
-                padding={'2em 0 0 0'}
-                v_space={'2em'}
-                h_space={'0.02em'}
-                defaultValue={props.post.markdown ?? ''}
-                onBlur={(e) =>
-                  (areaLeavePos.current = e.currentTarget.selectionEnd)
-                }
-                onChange={(e) => (props.post.markdown = e.target.value)}
-                ref={areaRef}
+              <SimpleMde 
+                value={props.post.markdown ?? ''}
+                // onChange={(value) => {
+                //   setMarkdown(value);
+                // }}
+                onChange={(value) => (props.post.markdown = value)}
               />
             </TransformBox>
           </ColorBox>
