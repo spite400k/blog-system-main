@@ -5,7 +5,7 @@ export const schedule = async (post: Post) => {
   const reqData: PostScheduleRequest = {
     id: post.id,
     title: post.title ?? '',
-    release: post.release.toDate().toString()
+    releaseDate: post.releaseDate.toDate().toString()
   }
   await fetch('/api/admin/post/isr/schedule', {
     method: 'POST',
@@ -22,7 +22,7 @@ export const refresh = async (post: Post) => {
     id: post.id ?? '',
     title: post.title ?? '',
     slug: post.slug,
-    release: post.release.toDate().toString()
+    releaseDate: post.releaseDate.toDate().toString()
   }
   await fetch('/api/admin/post/isr/refresh', {
     method: 'POST',

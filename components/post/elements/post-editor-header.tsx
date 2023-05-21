@@ -73,7 +73,7 @@ export const PostEditorHeader = (props: { post: Post }) => {
               if (error === null) {
                 notifier.show(
                   props.post.publish
-                    ? props.post.release.toDate() < new Date()
+                    ? props.post.releaseDate.toDate() < new Date()
                       ? messageList.success_save_update
                       : messageList.success_save_reserve
                     : messageList.success_save_draft

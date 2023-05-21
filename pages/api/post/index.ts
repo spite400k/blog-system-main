@@ -31,13 +31,13 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       ? await db
           .collection('post')
           .where('publish', '==', true)
-          .where('release', '<', now)
+          .where('releaseDate', '<', now)
           .where('category', '==', (docCategory.docs[0].data() as Category).id)
           .get()
       : await db
           .collection('post')
           .where('publish', '==', true)
-          .where('release', '<', now)
+          .where('releaseDate', '<', now)
           .get()
 
     if (docPosts.empty) {
@@ -50,7 +50,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         id: post.id,
         title: post.title,
         slug: post.slug,
-        release: post.release.toDate(),
+        releaseDate: post.releaseDate.toDate(),
         markdown: post.markdown,
         thumbnail: post.thumbnail,
         custom: post.custom ?? {}

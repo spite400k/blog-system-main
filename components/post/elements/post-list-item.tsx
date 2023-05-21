@@ -16,6 +16,7 @@ export const PostListItem = (props: {
   category: Category | null
 }) => {
   const { theme } = useTheme()
+
   return (
     <Link href={`/post/${props.post.id}`} width={'100%'}>
       <ColorBox background={theme.color.base} radius={'12px'}>
@@ -106,8 +107,8 @@ export const PostListItem = (props: {
                     weight={'500'}
                     color={theme.color.main}
                   >
-                    {getDateText(props.post.release.toDate())}{' '}
-                    {getTimeText(props.post.release.toDate())}
+                    {getDateText(props.post.releaseDate.toDate())}{' '}
+                    {getTimeText(props.post.releaseDate.toDate())}
                   </Word>
                 </FlexBox>
               </FlexBox>
@@ -190,7 +191,7 @@ export const _PostListItem = (props: { post: Post }) => {
 
 const PostListStateMaker = (props: { post: Post }) => {
   const now = new Date()
-  const isReleased = props.post.release.toDate() < now && props.post.publish
+  const isReleased = props.post.releaseDate.toDate() < now && props.post.publish
   const color = isReleased ? '#3DD93D' : '#AFAEB4'
   return (
     <span

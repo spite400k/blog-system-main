@@ -32,8 +32,8 @@ export const PostEditorSidebar = (props: {
   const [thumbnail, setThumbnail] = useState<StorageObject | null>(
     props.post.thumbnail ?? null
   )
-  const [release, setRelease] = useState<Date>(
-    props.post.release ? props.post.release.toDate() : new Date()
+  const [releaseDate, setReleaseDate] = useState<Date>(
+    props.post.releaseDate ? props.post.releaseDate.toDate() : new Date()
   )
   const editor = usePostEditor()
 
@@ -42,8 +42,8 @@ export const PostEditorSidebar = (props: {
   }, [isPublish, props.post])
 
   useEffect(() => {
-    props.post.release = Timestamp.fromDate(release)
-  }, [release, props.post])
+    props.post.releaseDate = Timestamp.fromDate(releaseDate)
+  }, [releaseDate, props.post])
 
   useEffect(() => {
     if (thumbnail) props.post.thumbnail = thumbnail
@@ -135,7 +135,7 @@ export const PostEditorSidebar = (props: {
                     : 'translate(-105%, -50%)'
                 }
               >
-                <Calendar date={release} onChange={(d) => setRelease(d)} />
+                <Calendar date={releaseDate} onChange={(d) => setReleaseDate(d)} />
               </TransformBox>
             </ColorBox>
             <CursorBox cursor={'pointer'}>
@@ -153,8 +153,8 @@ export const PostEditorSidebar = (props: {
                     fit={'contain'}
                   />
                   <Word size={moduler(-1)} weight={'600'}>{`${getDateText(
-                    release
-                  )} ${getTimeText(release)}`}</Word>
+                    releaseDate
+                  )} ${getTimeText(releaseDate)}`}</Word>
                 </FlexBox>
               </ColorBox>
             </CursorBox>

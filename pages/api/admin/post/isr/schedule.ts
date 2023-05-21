@@ -95,7 +95,7 @@ const reqOnEndpoints = async (postId: string) => {
 
 // スケジュールのログを更新する
 const updateScheduleDoc = async (
-  data: { postId: string; release: Date },
+  data: { postId: string; releaseDate: Date },
   state: 'complete' | 'standby'
 ) => {
   const db = getDB()
@@ -170,7 +170,7 @@ const updateScheduleDoc = async (
 }
 
 // 投稿をリリースする（各エンドポイントへリクエスト・Slackへの通知）
-const releasePost = async (title: string, postId: string, release: Date) => {
+const releasePost = async (title: string, postId: string, releaseDate: Date) => {
   // request to endpoints
   const reqResult = await reqOnEndpoints(postId)
 
@@ -189,7 +189,7 @@ const releasePost = async (title: string, postId: string, release: Date) => {
 
   // change schedule data from standby to complete
   if (reqResult) {
-    updateScheduleDoc({ postId, release }, 'complete')
+    updateScheduleDoc({ postId, releaseDate }, 'complete')
   }
 }
 
@@ -201,11 +201,11 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const body = req.body
-  const release = body.release ? new Date(body.release) : null
+  const releaseDate = body.releaseDate ? new Date(body.releaseDate) : null
   const postId = body.id ?? null
   const title = body.title ?? null
 
-  if (!release || !postId || !title) {
+  if (!releaseDate || !postId || !title) {
     return res.status(400).json({
       message:
         'Post body is missing. Please set release date and post ID in your request body'
@@ -218,23 +218,23 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   // set schedule data to standby-list
-  const updateResult = await updateScheduleDoc({ postId, release }, 'standby')
+  const updateResult = await updateScheduleDoc({ postId, releaseDate }, 'standby')
   console.log(`update-schedule-result: ${updateResult}`)
 
   // 削除や再リリースの延期など、投稿を非表示にするために、一回再生成する
   const result = await reqOnEndpoints(postId)
   console.log(`endpoint-result: ${result}`)
 
-  const isAlreadyReleased = release <= new Date()
+  const isAlreadyReleased = releaseDate <= new Date()
 
   if (isAlreadyReleased) {
-    await releasePost(title, postId, release)
+    await releasePost(title, postId, releaseDate)
   } else {
     // set cron job
     console.log('job scheduled')
-    schedule.scheduleJob(postId, release, async () => {
+    schedule.scheduleJob(postId, releaseDate, async () => {
       console.log('job runnning')
-      await releasePost(title, postId, release)
+      await releasePost(title, postId, releaseDate)
     })
   }
 

@@ -4,6 +4,8 @@ import { getRandomStr } from 'shared/utils/string'
 import { collections } from '../types/collection'
 
 export const insert = <T>(col: collections, data: T, id?: string) => {
+console.log("insert col ")
+console.dir(data);
   try {
     const uid = id ?? getRandomStr(16)
     const docRef = doc(firestore, col, uid)

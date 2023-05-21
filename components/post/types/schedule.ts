@@ -1,5 +1,5 @@
 export type PostScheduleRequest = {
   id: string
   title: string
-  release: string // Date.toString()
+  releaseDate: string // Date.toString()
 }
