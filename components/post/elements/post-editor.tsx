@@ -3,17 +3,17 @@ import { BorderBox } from 'shared/elements/box/border'
 import { ColorBox } from 'shared/elements/box/color'
 import { useTheme } from 'shared/hooks/useTheme'
 import { TransformBox } from 'shared/elements/box/transform'
-import { useEffect, useRef, useState, useMemo, MutableRefObject } from 'react'
+import { useEffect, useRef, useState, MutableRefObject } from 'react'
 import { usePostEditor } from 'post/hooks/usePostEditor'
 import { PostMarkdown } from './post-markdown'
 import { Box } from 'shared/elements/box/common'
+import 'easymde/dist/easymde.min.css'
+import styled from 'styled-components'
 // import SimpleMde from "react-simplemde-editor";
 import dynamic from 'next/dynamic'
 const SimpleMde = dynamic(() => import('react-simplemde-editor'), {
   ssr: false
 })
-import 'easymde/dist/easymde.min.css'
-import styled from 'styled-components'
 
 export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   const { isPreview, uploadInfo, onInsertImgMarkdown } = usePostEditor()
