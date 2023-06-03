@@ -5,7 +5,6 @@ import { getRandomStr } from 'shared/utils/string'
 
 export const createPost = async () => {
   const now = new Date()
-  const nowTs = new Date().getTime;
   const newPost: Post = {
     id: getRandomStr(16),
     title: '新しい投稿',
@@ -18,10 +17,8 @@ export const createPost = async () => {
     custom: {},
     insDate: Timestamp.fromDate(now),
     excerpt: '',
-    ogImage: {
-      name: '',
-      url: ''
-    },
+    ogImage: { name: 'noImage', url: '/dog.png' },
+    thumbnail: { name: 'noImage', url: '/dog.png' },
     tags: []
   }
   const result = insert('post', newPost, newPost.id)

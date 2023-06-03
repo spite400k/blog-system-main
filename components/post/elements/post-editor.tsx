@@ -1,21 +1,19 @@
 import { Post } from 'post/types/post'
 import { BorderBox } from 'shared/elements/box/border'
 import { ColorBox } from 'shared/elements/box/color'
-import { Area } from 'shared/elements/field/area'
 import { useTheme } from 'shared/hooks/useTheme'
-import { moduler } from 'shared/utils/styles'
-import styled from 'styled-components'
 import { TransformBox } from 'shared/elements/box/transform'
 import { useEffect, useRef, useState, useMemo, MutableRefObject } from 'react'
 import { usePostEditor } from 'post/hooks/usePostEditor'
 import { PostMarkdown } from './post-markdown'
 import { Box } from 'shared/elements/box/common'
 // import SimpleMde from "react-simplemde-editor";
-import dynamic from "next/dynamic";
-const SimpleMde = dynamic(() => import("react-simplemde-editor"), { ssr: false });
-import "easymde/dist/easymde.min.css";
-
-
+import dynamic from 'next/dynamic'
+const SimpleMde = dynamic(() => import('react-simplemde-editor'), {
+  ssr: false
+})
+import 'easymde/dist/easymde.min.css'
+import styled from 'styled-components'
 
 export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   const { isPreview, uploadInfo, onInsertImgMarkdown } = usePostEditor()
@@ -54,66 +52,77 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   //       });
   //     });
   // };
-  
+
   const editor = usePostEditor()
   // const imageUploadFunction = async (e) => {
-    
+
   //                 const files = e.currentTarget.files
   //                 if (!files) return
   //                 if (files.length === 0) return
   //                 await editor.onUploadImage(files[0])
-                
+
   // }
-    const uploadImage = async (file: File) => {
-        try {
-            // 画像アップロード処理を実行
-          editor.onUploadImage(file)
-        } catch (error) {
-        }
+  const uploadImage = async (file: File) => {
+    try {
+      // 画像アップロード処理を実行
+      editor.onUploadImage(file)
+    } catch (error) {}
+  }
+
+  const handleDrop = (
+    data: any,
+    e: { dataTransfer: { files: string | any[] | undefined } }
+  ) => {
+    if (
+      e.dataTransfer.files === undefined ||
+      e.dataTransfer.files.length === 0
+    ) {
+      return
     }
 
-    const handleDrop = (data, e) => {
-        if (e.dataTransfer.files === undefined || e.dataTransfer.files.length === 0) {
-            return;
-        }
+    const files = e.dataTransfer?.files
+    const file = files[0]
 
-        const files = e.dataTransfer?.files;
-        const file = files[0];
+    if (
+      file.type === 'image/png' ||
+      file.type === 'image/jpeg' ||
+      file.type === 'image/heic' ||
+      file.type === 'image/gif'
+    ) {
+      const file = files[0]
+      const uploadedImageUrl = uploadImage(file)
+      // SimpleMde.replaceSelection("![](" + uploadedImageUrl + ")");
+      // アップロードしたURLを取得してマークダウンに埋め込む
+      setMarkdown((preMardown) => {
+        return preMardown + `![image](${uploadedImageUrl})`
+      })
+    }
+  }
 
-        if (
-            file.type === "image/png" ||
-            file.type === "image/jpeg" ||
-            file.type === "image/heic" ||
-            file.type === "image/gif"
-        ) {
-        const file = files[0];
-            const uploadedImageUrl = uploadImage(file);
-          // SimpleMde.replaceSelection("![](" + uploadedImageUrl + ")");
-          // アップロードしたURLを取得してマークダウンに埋め込む
-          setMarkdown((preMardown) => {
-            return preMardown + `![image](${uploadedImageUrl})`;
-          });
-        }
-    };
+  const handlePaste = (
+    data: any,
+    e: { clipboardData: { files: string | any[] | undefined } }
+  ) => {
+    if (
+      e.clipboardData.files === undefined ||
+      e.clipboardData.files.length === 0
+    ) {
+      return
+    }
 
-    const handlePaste = (data, e) => {
-        if (e.clipboardData.files === undefined || e.clipboardData.files.length === 0) {
-            return;
-        }
+    const files = e.clipboardData.files
+    const file = files[0]
 
-        const files = e.clipboardData.files;
-        const file = files[0];
+    if (file.type === 'image/png') {
+      const uploadedImageUrl = uploadImage(file)
+      // SimpleMde.codemirror.replaceSelection("![](" + uploadedImageUrl + ")");
+      // アップロードしたURLを取得してマークダウンに埋め込む
+      setMarkdown((preMardown) => {
+        return preMardown + `![image](${uploadedImageUrl})`
+      })
+    }
+  }
 
-        if (file.type === "image/png") {
-            const uploadedImageUrl = uploadImage(file);
-          // SimpleMde.codemirror.replaceSelection("![](" + uploadedImageUrl + ")");
-          // アップロードしたURLを取得してマークダウンに埋め込む
-          setMarkdown((preMardown) => {
-            return preMardown + `![image](${uploadedImageUrl})`;
-          });
-        }
-    };
-  
   const toolbar = [
     '|',
     'undo',
@@ -131,8 +140,8 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
     'table',
     'horizontal-rule',
     '|',
-    'link',
-]
+    'link'
+  ]
 
   useEffect(() => {
     setMarkdown(props.post.markdown ?? '')
@@ -206,22 +215,22 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
               height={'100%'}
               transform={isPreview ? 'translateY(1em)' : 'translateY(0)'}
             >
-                <SimpleMde 
-                  value={props.post.markdown ?? ''}
-                  // onChange={(value) => {
-                  //   setMarkdown(value);
-                  // }}
-                  onChange={(value) => (props.post.markdown = value)}
-                  // options={autoUploadImage}
-                  events={{ drop: handleDrop, paste: handlePaste }}
+              <SimpleMde
+                value={props.post.markdown ?? ''}
+                // onChange={(value) => {
+                //   setMarkdown(value);
+                // }}
+                onChange={(value) => (props.post.markdown = value)}
+                // options={autoUploadImage}
+                events={{ drop: handleDrop, paste: handlePaste }}
                 ref={areaRef}
                 options={{
                   toolbar: toolbar,
-                  minHeight: "500px",
+                  minHeight: '500px',
                   autofocus: true,
-                  spellChecker: false,
+                  spellChecker: false
                 }}
-                  />
+              />
             </TransformBox>
           </ColorBox>
         </ColorBox>
