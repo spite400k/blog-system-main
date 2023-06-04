@@ -70,7 +70,7 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   }
 
   const handleDrop = (
-    data: any,
+    _data: any,
     e: { dataTransfer: { files: string | any[] | undefined } }
   ) => {
     if (
@@ -80,7 +80,7 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
       return
     }
 
-    const files = e.dataTransfer?.files
+    const files = e.dataTransfer.files
     const file = files[0]
 
     if (
