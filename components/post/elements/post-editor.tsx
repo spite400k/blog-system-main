@@ -140,26 +140,6 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   //   }
   // }
 
-  const toolbar = [
-    '|',
-    'undo',
-    'redo',
-    '|',
-    'bold',
-    'italic',
-    'heading',
-    'strikethrough',
-    'code',
-    '|',
-    'quote',
-    'unordered-list',
-    'ordered-list',
-    'table',
-    'horizontal-rule',
-    '|',
-    'link'
-  ]
-
   useEffect(() => {
     setMarkdown(props.post.markdown ?? '')
   }, [isPreview])
@@ -174,33 +154,6 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
     props.post.markdown = newMarkdown
     setMarkdown(props.post.markdown)
   }, [uploadInfo])
-
-  // エディタの設定
-  const options = useMemo(() => {
-    return {
-      // toolbar: toolbar,
-      showIcons: [
-        'strikethrough',
-        'code',
-        'table',
-        'redo',
-        'heading',
-        'undo',
-        'heading-bigger',
-        'heading-smaller',
-        'heading-1',
-        'heading-2',
-        'heading-3',
-        'clean-block',
-        'horizontal-rule'
-      ],
-      minHeight: '500px',
-      autofocus: true,
-      spellChecker: false,
-      uploadImage: true,
-      imageUploadFunction
-    }
-  }, [])
 
   return (
     <PostEditorBox background={theme.color.gray06}>
