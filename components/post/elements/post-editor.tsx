@@ -24,35 +24,8 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   const areaRef = useRef() as MutableRefObject<HTMLDivElement>
   // マークダウンタブ追加
   const [, setMarkdown] = useState<string>(props.post.markdown ?? '')
-  // const [markdown, setMarkdown] = useState(props.post.markdown ?? '')
 
   // 画像をアップロードする処理
-  // const imageUploadFunction = (file) => {
-  //   // 保存先の参照を作成
-  //   const storage = firebase.storage();
-  //   const storageRef = storage.ref(`images`);
-  //   const imagesRef = storageRef.child(file.name);
-  //   // 画像をアップロード
-  //   const upLoadTask = imagesRef.put(file);
-  //   // エラー処理や画像の保存が完了した後の処理
-  //   upLoadTask.on(
-  //     "state_changed",
-  //     (snapshot) => {
-  //       console.log("snapshot", snapshot);
-  //     },
-  //     (error) => {
-  //       console.log("エラーが発生しました", error);
-  //     },
-  //     () => {
-  //       upLoadTask.snapshot.ref.getDownloadURL().then((downloadURL: string) => {
-  //         // アップロードしたURLを取得してマークダウンに埋め込む
-  //         setMarkdown((preMardown) => {
-  //           return preMardown + `![image](${downloadURL})`;
-  //         });
-  //       });
-  //     });
-  // };
-
   const imageUploadFunction = (file: File) => {
     if (
       file.type === 'image/png' ||
@@ -62,7 +35,6 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
     ) {
       // const file = files[0]
       const uploadedImageUrl = uploadImage(file)
-      // SimpleMde.replaceSelection("![](" + uploadedImageUrl + ")");
       // アップロードしたURLを取得してマークダウンに埋め込む
       setMarkdown((preMarkdown) => {
         return preMarkdown + `![image](${uploadedImageUrl})`
@@ -71,14 +43,7 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   }
 
   const editor = usePostEditor()
-  // const imageUploadFunction = async (e) => {
 
-  //                 const files = e.currentTarget.files
-  //                 if (!files) return
-  //                 if (files.length === 0) return
-  //                 await editor.onUploadImage(files[0])
-
-  // }
   const uploadImage = async (file: File) => {
     try {
       // 画像アップロード処理を実行
@@ -86,66 +51,11 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
     } catch (error) {}
   }
 
-  // const handleDrop = (
-  //   data: any,
-  //   e: { dataTransfer: { files: string | any[] | undefined } }
-  // ) => {
-  //   if (
-  //     e.dataTransfer.files === undefined ||
-  //     e.dataTransfer.files.length === 0
-  //   ) {
-  //     return
-  //   }
-
-  //   const files = e.dataTransfer?.files
-  //   const file = files[0]
-
-  //   if (
-  //     file.type === 'image/png' ||
-  //     file.type === 'image/jpeg' ||
-  //     file.type === 'image/heic' ||
-  //     file.type === 'image/gif'
-  //   ) {
-  //     const file = files[0]
-  //     const uploadedImageUrl = uploadImage(file)
-  //     // SimpleMde.replaceSelection("![](" + uploadedImageUrl + ")");
-  //     // アップロードしたURLを取得してマークダウンに埋め込む
-  //     setMarkdown((preMardown) => {
-  //       return preMardown + `![image](${uploadedImageUrl})`
-  //     })
-  //   }
-  // }
-
-  // const handlePaste = (
-  //   data: any,
-  //   e: { clipboardData: { files: string | any[] | undefined } }
-  // ) => {
-  //   if (
-  //     e.clipboardData.files === undefined ||
-  //     e.clipboardData.files.length === 0
-  //   ) {
-  //     return
-  //   }
-
-  //   const files = e.clipboardData.files
-  //   const file = files[0]
-
-  //   if (file.type === 'image/png') {
-  //     const uploadedImageUrl = uploadImage(file)
-  //     // SimpleMde.codemirror.replaceSelection("![](" + uploadedImageUrl + ")");
-  //     // アップロードしたURLを取得してマークダウンに埋め込む
-  //     setMarkdown((preMardown) => {
-  //       return preMardown + `![image](${uploadedImageUrl})`
-  //     })
-  //   }
-  // }
-
   useEffect(() => {
     setMarkdown(props.post.markdown ?? '')
   }, [isPreview])
 
   useEffect(() => {
-    // if (!props.post.markdown) return
     const newMarkdown = onInsertImgMarkdown(
       props.post.markdown ?? '',
       areaRef.current,
@@ -206,14 +116,8 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
             >
               <SimpleMde
                 value={props.post.markdown ?? ''}
-                // onChange={(value) => {
-                //   setMarkdown(value);
-                // }}
                 onChange={(value) => (props.post.markdown = value)}
-                // options={autoUploadImage}
-                // events={{ drop: handleDrop, paste: handlePaste }}
                 ref={areaRef}
-                // options={options}
                 options={{
                   toolbar: [
                     '|',
