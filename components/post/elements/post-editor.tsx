@@ -178,7 +178,22 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   // エディタの設定
   const options = useMemo(() => {
     return {
-      toolbar: toolbar,
+      // toolbar: toolbar,
+      showIcons: [
+        'strikethrough',
+        'code',
+        'table',
+        'redo',
+        'heading',
+        'undo',
+        'heading-bigger',
+        'heading-smaller',
+        'heading-1',
+        'heading-2',
+        'heading-3',
+        'clean-block',
+        'horizontal-rule'
+      ],
       minHeight: '500px',
       autofocus: true,
       spellChecker: false,
@@ -245,7 +260,33 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
                 // options={autoUploadImage}
                 // events={{ drop: handleDrop, paste: handlePaste }}
                 ref={areaRef}
-                options={options}
+                // options={options}
+                options={{
+                  toolbar: [
+                    '|',
+                    'undo',
+                    'redo',
+                    '|',
+                    'bold',
+                    'italic',
+                    'heading',
+                    'strikethrough',
+                    'code',
+                    '|',
+                    'quote',
+                    'unordered-list',
+                    'ordered-list',
+                    'table',
+                    'horizontal-rule',
+                    '|',
+                    'link'
+                  ],
+                  minHeight: '500px',
+                  autofocus: true,
+                  spellChecker: false,
+                  uploadImage: true,
+                  imageUploadFunction
+                }}
               />
             </TransformBox>
           </ColorBox>
