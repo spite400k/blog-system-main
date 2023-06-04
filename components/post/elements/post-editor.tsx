@@ -3,7 +3,7 @@ import { BorderBox } from 'shared/elements/box/border'
 import { ColorBox } from 'shared/elements/box/color'
 import { useTheme } from 'shared/hooks/useTheme'
 import { TransformBox } from 'shared/elements/box/transform'
-import { useEffect, useRef, useState, MutableRefObject } from 'react'
+import { useEffect, useRef, useState, MutableRefObject, useMemo } from 'react'
 import { usePostEditor } from 'post/hooks/usePostEditor'
 import { PostMarkdown } from './post-markdown'
 import { Box } from 'shared/elements/box/common'
@@ -53,6 +53,23 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
   //     });
   // };
 
+  const imageUploadFunction = (file: File) => {
+    if (
+      file.type === 'image/png' ||
+      file.type === 'image/jpeg' ||
+      file.type === 'image/heic' ||
+      file.type === 'image/gif'
+    ) {
+      // const file = files[0]
+      const uploadedImageUrl = uploadImage(file)
+      // SimpleMde.replaceSelection("![](" + uploadedImageUrl + ")");
+      // アップロードしたURLを取得してマークダウンに埋め込む
+      setMarkdown((preMarkdown) => {
+        return preMarkdown + `![image](${uploadedImageUrl})`
+      })
+    }
+  }
+
   const editor = usePostEditor()
   // const imageUploadFunction = async (e) => {
 
@@ -69,59 +86,59 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
     } catch (error) {}
   }
 
-  const handleDrop = (
-    _data: any,
-    e: { dataTransfer: { files: string | any[] | undefined } }
-  ) => {
-    if (
-      e.dataTransfer.files === undefined ||
-      e.dataTransfer.files.length === 0
-    ) {
-      return
-    }
+  // const handleDrop = (
+  //   data: any,
+  //   e: { dataTransfer: { files: string | any[] | undefined } }
+  // ) => {
+  //   if (
+  //     e.dataTransfer.files === undefined ||
+  //     e.dataTransfer.files.length === 0
+  //   ) {
+  //     return
+  //   }
 
-    const files = e.dataTransfer.files
-    const file = files[0]
+  //   const files = e.dataTransfer?.files
+  //   const file = files[0]
 
-    if (
-      file.type === 'image/png' ||
-      file.type === 'image/jpeg' ||
-      file.type === 'image/heic' ||
-      file.type === 'image/gif'
-    ) {
-      const file = files[0]
-      const uploadedImageUrl = uploadImage(file)
-      // SimpleMde.replaceSelection("![](" + uploadedImageUrl + ")");
-      // アップロードしたURLを取得してマークダウンに埋め込む
-      setMarkdown((preMardown) => {
-        return preMardown + `![image](${uploadedImageUrl})`
-      })
-    }
-  }
+  //   if (
+  //     file.type === 'image/png' ||
+  //     file.type === 'image/jpeg' ||
+  //     file.type === 'image/heic' ||
+  //     file.type === 'image/gif'
+  //   ) {
+  //     const file = files[0]
+  //     const uploadedImageUrl = uploadImage(file)
+  //     // SimpleMde.replaceSelection("![](" + uploadedImageUrl + ")");
+  //     // アップロードしたURLを取得してマークダウンに埋め込む
+  //     setMarkdown((preMardown) => {
+  //       return preMardown + `![image](${uploadedImageUrl})`
+  //     })
+  //   }
+  // }
 
-  const handlePaste = (
-    data: any,
-    e: { clipboardData: { files: string | any[] | undefined } }
-  ) => {
-    if (
-      e.clipboardData.files === undefined ||
-      e.clipboardData.files.length === 0
-    ) {
-      return
-    }
+  // const handlePaste = (
+  //   data: any,
+  //   e: { clipboardData: { files: string | any[] | undefined } }
+  // ) => {
+  //   if (
+  //     e.clipboardData.files === undefined ||
+  //     e.clipboardData.files.length === 0
+  //   ) {
+  //     return
+  //   }
 
-    const files = e.clipboardData.files
-    const file = files[0]
+  //   const files = e.clipboardData.files
+  //   const file = files[0]
 
-    if (file.type === 'image/png') {
-      const uploadedImageUrl = uploadImage(file)
-      // SimpleMde.codemirror.replaceSelection("![](" + uploadedImageUrl + ")");
-      // アップロードしたURLを取得してマークダウンに埋め込む
-      setMarkdown((preMardown) => {
-        return preMardown + `![image](${uploadedImageUrl})`
-      })
-    }
-  }
+  //   if (file.type === 'image/png') {
+  //     const uploadedImageUrl = uploadImage(file)
+  //     // SimpleMde.codemirror.replaceSelection("![](" + uploadedImageUrl + ")");
+  //     // アップロードしたURLを取得してマークダウンに埋め込む
+  //     setMarkdown((preMardown) => {
+  //       return preMardown + `![image](${uploadedImageUrl})`
+  //     })
+  //   }
+  // }
 
   const toolbar = [
     '|',
@@ -158,13 +175,17 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
     setMarkdown(props.post.markdown)
   }, [uploadInfo])
 
-  // // エディタの設定
-  // const autoUploadImage = useMemo(() => {
-  //   return {
-  //     uploadImage: true,
-  //     imageUploadFunction,
-  //   };
-  // }, []);
+  // エディタの設定
+  const options = useMemo(() => {
+    return {
+      toolbar: toolbar,
+      minHeight: '500px',
+      autofocus: true,
+      spellChecker: false,
+      uploadImage: true,
+      imageUploadFunction
+    }
+  }, [])
 
   return (
     <PostEditorBox background={theme.color.gray06}>
@@ -222,14 +243,9 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
                 // }}
                 onChange={(value) => (props.post.markdown = value)}
                 // options={autoUploadImage}
-                events={{ drop: handleDrop ?? '', paste: handlePaste }}
+                // events={{ drop: handleDrop, paste: handlePaste }}
                 ref={areaRef}
-                options={{
-                  toolbar: toolbar,
-                  minHeight: '500px',
-                  autofocus: true,
-                  spellChecker: false
-                }}
+                options={options}
               />
             </TransformBox>
           </ColorBox>
