@@ -222,7 +222,7 @@ export const PostEditor = (props: { post: Post; isPreview: boolean }) => {
                 // }}
                 onChange={(value) => (props.post.markdown = value)}
                 // options={autoUploadImage}
-                events={{ drop: handleDrop, paste: handlePaste }}
+                events={{ drop: handleDrop ?? '', paste: handlePaste }}
                 ref={areaRef}
                 options={{
                   toolbar: toolbar,
