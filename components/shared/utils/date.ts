@@ -31,6 +31,19 @@ export const getTimeText = (date: Date) => {
     2
   )}`
 }
+export const getTimestampText = (date: Date) => {
+  return `${zeroPadding(date.getHours(), 2)}${zeroPadding(
+    date.getMinutes(),
+    2
+  )}${zeroPadding(date.getSeconds(), 2)}`
+}
+
+export const getDateTimeText = (date: Date) => {
+  const d = getDateText(date)
+  const t = getTimestampText(date)
+
+  return d + '_' + t
+}
 
 export const getMonthDayList = (
   year: number,

@@ -1,12 +1,13 @@
 import { Timestamp } from 'firebase/firestore'
 import { insert } from 'firestore/utils/insert'
 import { Post } from 'post/types/post'
+import { getDateTimeText } from 'shared/utils/date'
 import { getRandomStr } from 'shared/utils/string'
 
 export const createPost = async () => {
   const now = new Date()
   const newPost: Post = {
-    id: getRandomStr(16),
+    id: getDateTimeText(new Date()),
     title: '新しい投稿',
     category: '',
     slug: getRandomStr(),
