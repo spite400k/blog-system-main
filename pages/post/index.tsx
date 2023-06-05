@@ -15,7 +15,11 @@ const Home: NextPage = () => {
   const { data: categories } = useFireStore<Category>('category')
 
   if (!posts || !categories) return <></>
-  posts.sort((a, b) => b.releaseDate.seconds - a.releaseDate.seconds)
+  posts.sort((a, b) => {
+    if (a.releaseDate.seconds !== b.releaseDate.seconds)
+      return b.releaseDate.seconds - a.releaseDate.seconds
+    return b.insDate.seconds - a.insDate.seconds
+  })
 
   return (
     <FramerBox>
