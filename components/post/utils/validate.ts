@@ -23,7 +23,11 @@ export const validatePost = async (
   const slugs = (await take<PostSlug>('slug', 'post')) as PostSlug
   const oldPost = (await take<Post>('post', p.id)) as Post
 
-  if (slugs != null && slugs.value.indexOf(p.slug ?? '') >= 0 && oldPost.slug !== p.slug) {
+  if (
+    slugs != null &&
+    slugs.value.indexOf(p.slug ?? '') >= 0 &&
+    oldPost.slug !== p.slug
+  ) {
     return errorList.same_slug_exist
   }
 
