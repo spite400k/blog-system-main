@@ -7,10 +7,10 @@ import { getRandomStr } from 'shared/utils/string'
 export const createPost = async () => {
   const now = new Date()
   const newPost: Post = {
-    id: getDateTimeText(new Date()),
+    id: getDateTimeText(now),
     title: '新しい投稿',
     category: '',
-    slug: getRandomStr(),
+    slug: getDateTimeText(now),
     publish: false,
     releaseDate: Timestamp.fromDate(
       new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7, 0, 0)
