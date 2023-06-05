@@ -5,7 +5,7 @@ import { upload } from 'components/storage/utils/upload'
 import { useNotification } from 'components/notification/hooks/useNotification'
 import { errorList } from 'components/storage/utils/error'
 import { messageList } from 'components/storage/utils/message'
-import { compressImage } from "../utils/compress"
+import { compressImage } from "../../shared/utils/compress"
 
 export const usePostEditor = () => {
   const [uploadInfo, setUploadInfo] = useRecoilState(postImageUploadState)
