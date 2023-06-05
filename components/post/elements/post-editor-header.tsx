@@ -13,8 +13,8 @@ import { savePost } from 'post/utils/save'
 import { deletePost } from 'post/utils/delete'
 import { useRouter } from 'next/router'
 import { useNotification } from 'components/notification/hooks/useNotification'
-import { messageList } from 'post/utils/message'
-import { errorList } from 'post/utils/error'
+import { messageList } from 'shared/utils/message'
+import { errorList } from 'shared/utils/error'
 import { refresh, schedule } from 'post/utils/schedule'
 
 export const PostEditorHeader = (props: { post: Post }) => {
