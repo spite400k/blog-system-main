@@ -11,7 +11,7 @@ import { FramerBox } from 'shared/elements/box/framer'
 import { findInArray } from 'shared/utils/object'
 
 const Home: NextPage = () => {
-  let { data: posts } = useFireStore<Post>('post')
+  const { data: posts } = useFireStore<Post>('post')
   const { data: categories } = useFireStore<Category>('category')
 
   if (!posts || !categories) return <></>
