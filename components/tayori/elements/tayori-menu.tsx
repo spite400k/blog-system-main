@@ -24,6 +24,15 @@ export const TayoriMenu = () => {
             href={'/post'}
           />
         </FlexBox>
+        <FlexBox way={'column'} gap={'1em'} grow={'9999'}>
+          <IconLink
+            width={'48px'}
+            height={'48px'}
+            background={theme.color.gray06}
+            src={'movie.svg'}
+            href={'/gameMovie'}
+          />
+        </FlexBox>
         <FlexBox way={'column'} gap={'1em'}>
           <IconLink
             width={'48px'}

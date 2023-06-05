@@ -1,1 +1,6 @@
-export type collections = 'post' | 'slug' | 'settings' | 'category'
+export type collections =
+  | 'post'
+  | 'slug'
+  | 'settings'
+  | 'category'
+  | 'gameMovie'

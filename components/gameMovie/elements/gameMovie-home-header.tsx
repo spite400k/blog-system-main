@@ -1,17 +1,17 @@
 import { useRouter } from 'next/router'
-import { createPost } from 'post/utils/create'
+import { createGameMovie } from '../utils/create'
 import { Button } from 'shared/elements/button/common'
 import { Header } from 'shared/elements/header/header'
 
-export const PostHomeHeader = () => {
+export const GameMovieHomeHeader = () => {
   const router = useRouter()
   return (
-    <Header name={'ブログ投稿'} subName={'POST'}>
+    <Header name={'試合映像の投稿'} subName={'POST'}>
       <Button
         onClick={() => {
-          createPost().then((p) => {
+          createGameMovie().then((p) => {
             if (process.env.NODE_ENV === 'development') console.log(p)
-            if (p) router.push(`/post/${p.id}`)
+            if (p) router.push(`/gameMovie/${p.id}`)
           })
         }}
       >

@@ -5,6 +5,7 @@ import { TayoriSettings } from '../types/settings'
 export const settingsState = atom<TayoriSettings>({
   key: 'settings',
   default: {
-    schedules: []
+    schedules: [],
+    schedulesGameMovie: []
   }
 })
