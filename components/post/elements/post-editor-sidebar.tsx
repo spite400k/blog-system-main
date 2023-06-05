@@ -119,6 +119,28 @@ export const PostEditorSidebar = (props: {
         shrink={'0'}
       >
         <FlexBox way={'column'} width={'100%'} gap={'1em'}>
+          <TopField title={'記事タイトル'}></TopField>
+          <TopField title={''}>
+            <Input
+              width={'100%'}
+              padding={'1em 0.5em'}
+              background={theme.color.base}
+              border={{ radius: '6px' }}
+              defaultValue={props.post.title}
+              onChange={(e) => (props.post.title = e.target.value)}
+            />{' '}
+          </TopField>
+        </FlexBox>
+      </ColorBox>
+
+      <ColorBox
+        background={theme.color.gray06}
+        width={'100%'}
+        padding={'1em'}
+        radius={'16px'}
+        shrink={'0'}
+      >
+        <FlexBox way={'column'} width={'100%'} gap={'1em'}>
           <TopField title={'公開設定'}>
             <Switch
               state={isPublish}
@@ -135,7 +157,10 @@ export const PostEditorSidebar = (props: {
                     : 'translate(-105%, -50%)'
                 }
               >
-                <Calendar date={releaseDate} onChange={(d) => setReleaseDate(d)} />
+                <Calendar
+                  date={releaseDate}
+                  onChange={(d) => setReleaseDate(d)}
+                />
               </TransformBox>
             </ColorBox>
             <CursorBox cursor={'pointer'}>
