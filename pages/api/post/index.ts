@@ -21,7 +21,6 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const query = req.query
     const category = query.category
     const db = admin.firestore()
-    const now = new Date()
 
     const docCategory = await db
       .collection('category')
@@ -30,15 +29,18 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const docPosts = !docCategory.empty
       ? await db
           .collection('post')
-          .where('publish', '==', true)
-          .where('releaseDate', '<', now)
           .where('category', '==', (docCategory.docs[0].data() as Category).id)
+          .orderBy('releaseDate')
+          .orderBy('insDate', 'desc')
           .get()
       : await db
           .collection('post')
-          .where('publish', '==', true)
-          .where('releaseDate', '<', now)
+          .orderBy('releaseDate', 'desc')
+          .orderBy('insDate', 'desc')
           .get()
+
+    console.dir('db:' + db)
+    console.dir('docPosts:' + docPosts)
 
     if (docPosts.empty) {
       return res.status(200).json([])

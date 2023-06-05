@@ -8,7 +8,10 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       admin.initializeApp({
         credential: admin.credential.cert({
           projectId: process.env.FIREBASE_PROJECT_ID,
-          privateKey: (process.env.FIREBASE_PRIVATE_KEY as string).replace(/\\n/g, '\n'),
+          privateKey: (process.env.FIREBASE_PRIVATE_KEY as string).replace(
+            /\\n/g,
+            '\n'
+          ),
           clientEmail: process.env.FIREBASE_CLIENT_EMAIL
         })
       })
@@ -17,13 +20,8 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const query = req.query
     const slug = query.slug as string
     const db = admin.firestore()
-    const now = new Date()
 
-    const docPost = await db.collection('post')
-      .where('slug', '==', slug)
-      .where('publish', '==', true)
-      .where('releaseDate', '<', now)
-      .get()
+    const docPost = await db.collection('post').where('slug', '==', slug).get()
 
     if (docPost.empty) {
       return res.status(404).json({ message: 'slug is invalid' })
