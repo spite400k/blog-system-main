@@ -10,9 +10,9 @@ export const useFireStore = <T>(
     `${collection}/${uid}`,
     firestoreFetcher,
     {
-      revalidateOnFocus: false,
+      revalidateOnFocus: true,
       revalidateOnReconnect: false,
-      dedupingInterval: 360000,
+      dedupingInterval: 360,
       focusThrottleInterval: 360000,
       errorRetryCount: 1
     }

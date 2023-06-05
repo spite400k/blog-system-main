@@ -21,7 +21,6 @@ const Home: NextPage = () => {
       return b.releaseDate.seconds - a.releaseDate.seconds
     return b.insDate.seconds - a.insDate.seconds
   })
-  console.dir(posts)
 
   return (
     <FramerBox>

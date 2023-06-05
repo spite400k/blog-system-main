@@ -2,7 +2,6 @@ import { Timestamp } from 'firebase/firestore'
 import { insert } from 'firestore/utils/insert'
 import { Post } from 'post/types/post'
 import { getDateTimeText } from 'shared/utils/date'
-import { getRandomStr } from 'shared/utils/string'
 
 export const createPost = async () => {
   const now = new Date()

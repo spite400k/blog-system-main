@@ -6,9 +6,6 @@ import { validatePost } from './validate'
 export const savePost = async (post: Post) => {
   if (process.env.NODE_ENV === 'development') console.log(post)
 
-  // console.log('savePost post ')
-  // console.dir(post)
-
   // 記事から記号のみ抜いて、見出し記事にする
   const temp = post.markdown ? post.markdown.replace(/\r?\n]*/gi, '') : ''
   // console.log('savePost temp ')
@@ -16,7 +13,6 @@ export const savePost = async (post: Post) => {
   post.excerpt = temp
     ? temp.replace(/[ -/:-@[-`{-~]*/gi, '').substring(0, 100) + '...'
     : ''
-  // console.dir(post.excerpt)
 
   // check validate
   const error = await validatePost(post)
