@@ -8,8 +8,7 @@ export const savePost = async (post: Post) => {
 
   // 記事から記号のみ抜いて、見出し記事にする
   const temp = post.markdown ? post.markdown.replace(/\r?\n]*/gi, '') : ''
-  // console.log('savePost temp ')
-  // console.dir(temp)
+
   post.excerpt = temp
     ? temp.replace(/[ -/:-@[-`{-~]*/gi, '').substring(0, 100) + '...'
     : ''

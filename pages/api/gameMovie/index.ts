@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { Post } from 'post/types/post'
+
 import { Category } from 'category/types/category'
 import admin from 'firebase-admin'
+import { GameMovie } from 'components/gameMovie/types/gameMovie'
 
 export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
@@ -26,37 +27,37 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       .collection('category')
       .where('name', '==', category ?? '')
       .get()
-    const docPosts = !docCategory.empty
+    const docGameMovies = !docCategory.empty
       ? await db
-          .collection('post')
+          .collection('gameMovie')
           .where('category', '==', (docCategory.docs[0].data() as Category).id)
           .orderBy('releaseDate')
           .orderBy('insDate', 'desc')
           .get()
       : await db
-          .collection('post')
+          .collection('gameMovie')
           .orderBy('releaseDate', 'desc')
           .orderBy('insDate', 'desc')
           .get()
 
-    if (docPosts.empty) {
+    if (docGameMovies.empty) {
       return res.status(200).json([])
     }
 
-    const posts = docPosts.docs.map((docPost) => {
-      const post = docPost.data() as Post
+    const gameMovies = docGameMovies.docs.map((docGameMovie) => {
+      const gameMovie = docGameMovie.data() as GameMovie
       return {
-        id: post.id,
-        title: post.title,
-        slug: post.slug,
-        releaseDate: post.releaseDate.toDate(),
-        markdown: post.markdown,
-        thumbnail: post.thumbnail,
-        custom: post.custom ?? {}
+        id: gameMovie.id,
+        title: gameMovie.title,
+        slug: gameMovie.slug,
+        releaseDate: gameMovie.releaseDate.toDate(),
+        markdown: gameMovie.markdown,
+        thumbnail: gameMovie.thumbnail,
+        custom: gameMovie.custom ?? {}
       }
     })
 
-    return res.status(200).json(posts)
+    return res.status(200).json(gameMovies)
   }
 }
 

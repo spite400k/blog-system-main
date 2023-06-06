@@ -19,7 +19,8 @@ export const createGameMovie = async () => {
     excerpt: '',
     ogImage: { name: 'noImage', url: '/dog.png' },
     thumbnail: { name: 'noImage', url: '/dog.png' },
-    tags: []
+    tags: [],
+    videoUrl: ''
   }
   const result = insert('gameMovie', newGameMovie, newGameMovie.id)
   return result ? newGameMovie : null

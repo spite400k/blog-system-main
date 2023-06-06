@@ -3,7 +3,7 @@ import { BorderBox } from 'shared/elements/box/border'
 import { ColorBox } from 'shared/elements/box/color'
 import { useTheme } from 'shared/hooks/useTheme'
 import { TransformBox } from 'shared/elements/box/transform'
-import { useEffect, useRef, useState, MutableRefObject } from 'react'
+import { useEffect, useRef, useState, MutableRefObject, ReactNode } from 'react'
 import { useGameMovieEditor } from '../hooks/useGameMovieEditor'
 import { GameMovieMarkdown } from './gameMovie-markdown'
 import { Box } from 'shared/elements/box/common'
@@ -11,6 +11,10 @@ import 'easymde/dist/easymde.min.css'
 import styled from 'styled-components'
 // import SimpleMde from "react-simplemde-editor";
 import dynamic from 'next/dynamic'
+import { FlexBox } from 'shared/elements/box/flex'
+import { Input } from 'shared/elements/field/input'
+import { Word } from 'shared/elements/text/common'
+import { moduler } from 'shared/utils/styles'
 const SimpleMde = dynamic(() => import('react-simplemde-editor'), {
   ssr: false
 })
@@ -86,6 +90,26 @@ export const GameMovieEditor = (props: {
           background={theme.color.base}
           position={'relative'}
         >
+          <ColorBox
+            background={theme.color.gray06}
+            width={'100%'}
+            padding={'1em'}
+            // radius={'16px'}
+            shrink={'0'}
+          >
+            <FlexBox way={'column'} width={'100%'} gap={'1em'}>
+              <TopField title={'動画URL'}>
+                <Input
+                  width={'100%'}
+                  padding={'1em 0.5em'}
+                  background={theme.color.base}
+                  border={{ radius: '6px' }}
+                  defaultValue={props.gameMovie.videoUrl}
+                  onChange={(e) => (props.gameMovie.videoUrl = e.target.value)}
+                />{' '}
+              </TopField>
+            </FlexBox>
+          </ColorBox>
           <ColorBox
             width={'100%'}
             height={'100%'}
@@ -167,3 +191,20 @@ const GameMovieEditorBox = styled.div<{ background: string }>`
   text-align: center;
   white-space: pre-wrap;
 `
+const TopField = (props: { title: string; children?: ReactNode }) => {
+  const { theme } = useTheme()
+  return (
+    <FlexBox
+      way={'row'}
+      width={'100%'}
+      alignItems={'center'}
+      justifyContent={'space-between'}
+      position={'relative'}
+    >
+      <Word weight={'600'} size={moduler(-2)} color={theme.color.main}>
+        {props.title}
+      </Word>
+      {props.children}
+    </FlexBox>
+  )
+}

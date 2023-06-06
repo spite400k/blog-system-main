@@ -15,4 +15,5 @@ export type GameMovie = {
   ogImage: StorageObject
   tags: string[]
   custom?: any
+  videoUrl:string
 }
