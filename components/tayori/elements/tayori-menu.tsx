@@ -29,6 +29,15 @@ export const TayoriMenu = () => {
             width={'48px'}
             height={'48px'}
             background={theme.color.gray06}
+            src={'/img/member/Soccer_player_dribbling_silhouette.svg'}
+            href={'/member'}
+          />
+        </FlexBox>
+        <FlexBox way={'column'} gap={'1em'} grow={'9999'}>
+          <IconLink
+            width={'48px'}
+            height={'48px'}
+            background={theme.color.gray06}
             src={'movie.svg'}
             href={'/gameMovie'}
           />

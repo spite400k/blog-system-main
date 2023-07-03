@@ -4,3 +4,4 @@ export type collections =
   | 'settings'
   | 'category'
   | 'gameMovie'
+  | 'member'

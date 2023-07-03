@@ -20,7 +20,9 @@
       "firestore/*": ["components/firestore/*"],
       "post/*": ["components/post/*"],
       "category/*": ["components/category/*"],
-      "notification/*": ["components/notification/*"]
+      "notification/*": ["components/notification/*"],
+      "gameMovie/*": ["components/post/*"],
+      "member/*": ["components/features/member/*"]
     },
     "incremental": true
   },
