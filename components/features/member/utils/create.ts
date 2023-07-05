@@ -7,17 +7,13 @@ export const createMember = async () => {
   const now = new Date()
   const newMember: Member = {
     id: getDateTimeText(now),
-    title: '新しい選手',
-    category: '',
-    slug: getDateTimeText(now),
+    name: '新しい選手',
     publish: false,
     releaseDate: Timestamp.fromDate(
       new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7, 0, 0)
     ),
     custom: {},
     insDate: Timestamp.fromDate(now),
-    excerpt: '',
-    ogImage: { name: 'noImage', url: '/dog.png' },
     thumbnail: { name: 'noImage', url: '/dog.png' },
     tags: []
   }

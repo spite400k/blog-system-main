@@ -3,16 +3,18 @@ import { Timestamp } from 'firebase/firestore'
 
 export type Member = {
   id: string
-  title?: string
-  slug?: string
-  category?: string
+  name?: string
+  nameEnglish?: string
+  position?: string
+  number?: string
+  thumbnail?: StorageObject
+
+  markdown?: string
+
   publish: boolean
   releaseDate: Timestamp
   insDate: Timestamp
-  markdown?: string
-  thumbnail?: StorageObject
-  excerpt: string
-  ogImage: StorageObject
+
   tags: string[]
   custom?: any
 }

@@ -44,10 +44,10 @@ export const MemberEditorHeader = (props: { member: Member }) => {
         <Box grow={'9999'}>
           <Input
             width="100%"
-            defaultValue={props.member.title}
+            defaultValue={props.member.name}
             color={theme.color.main}
             font={{ weight: '600', size: moduler(0) }}
-            onChange={(e) => (props.member.title = e.target.value)}
+            onChange={(e) => (props.member.name = e.target.value)}
           />
         </Box>
         <FlexBox way={'row'} gap={'1em'}>

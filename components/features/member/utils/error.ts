@@ -8,16 +8,22 @@ export const errorList = {
       '設定したスラッグは既に使用されています。他のスラッグを設定してください。',
     type: 'failed'
   },
-  title_is_empty: <Notification>{
+  name_is_empty: <Notification>{
     emoji: '😵',
-    code: 'member_title_is_empty',
-    message: '投稿のタイトルを1文字以上設定してください。',
+    code: 'member_name_is_empty',
+    message: '選手の名前を1文字以上設定してください。',
     type: 'failed'
   },
-  slug_is_empty: <Notification>{
+  number_is_empty: <Notification>{
     emoji: '😵',
-    code: 'member_slug_is_empty',
-    message: 'スラッグを1文字以上設定してください。',
+    code: 'member_number_is_empty',
+    message: '背番号を1文字以上設定してください。',
+    type: 'failed'
+  },
+  position_is_empty: <Notification>{
+    emoji: '😵',
+    code: 'member_number_is_empty',
+    message: 'ポジションを1つ設定してください。',
     type: 'failed'
   },
   update_failed: <Notification>{

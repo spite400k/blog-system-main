@@ -54,7 +54,9 @@ export const MemberListItem = (props: {
                 height="56px"
                 fit={'cover'}
                 src={
-                  props.member.thumbnail ? props.member.thumbnail.url : '/dog.png'
+                  props.member.thumbnail
+                    ? props.member.thumbnail.url
+                    : '/dog.png'
                 }
               />
             </BorderBox>
@@ -69,7 +71,7 @@ export const MemberListItem = (props: {
                   weight={'bold'}
                   color={theme.color.main}
                 >
-                  {props.member.title}
+                  {props.member.name}
                 </Word>
                 <BorderBox
                   borderPosition="all"
@@ -191,7 +193,8 @@ export const _MemberListItem = (props: { member: Member }) => {
 
 const MemberListStateMaker = (props: { member: Member }) => {
   const now = new Date()
-  const isReleased = props.member.releaseDate.toDate() < now && props.member.publish
+  const isReleased =
+    props.member.releaseDate.toDate() < now && props.member.publish
   const color = isReleased ? '#3DD93D' : '#AFAEB4'
   return (
     <span

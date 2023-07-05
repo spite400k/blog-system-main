@@ -71,44 +71,6 @@ export const MemberEditorSidebar = (props: {
               onSwitch={(state) => editor.onTogglePreview()}
             />
           </TopField>
-          <FlexBox way={'row'} gap={'1em'}>
-            <label htmlFor={'md-image'}>
-              <input
-                id={'md-image'}
-                type={'file'}
-                style={{ display: 'none' }}
-                onChange={async (e) => {
-                  const files = e.currentTarget.files
-                  if (!files) return
-                  if (files.length === 0) return
-                  await editor.onUploadImage(files[0])
-                }}
-              />
-              <TransformBox hover={'scale(1.1)'}>
-                <ColorBox
-                  width={'40px'}
-                  height={'40px'}
-                  radius={'20px'}
-                  background={theme.color.base}
-                >
-                  <FlexBox
-                    way={'column'}
-                    width={'40px'}
-                    height={'40px'}
-                    justifyContent={'center'}
-                    alignItems={'center'}
-                  >
-                    <Image
-                      width={'26px'}
-                      height={'26px'}
-                      src={'/image.svg'}
-                      fit={'contain'}
-                    />
-                  </FlexBox>
-                </ColorBox>
-              </TransformBox>
-            </label>
-          </FlexBox>
         </FlexBox>
       </ColorBox>
       <ColorBox
@@ -119,17 +81,13 @@ export const MemberEditorSidebar = (props: {
         shrink={'0'}
       >
         <FlexBox way={'column'} width={'100%'} gap={'1em'}>
-          <TopField title={'記事タイトル'}></TopField>
-          <TopField title={''}>
-            <Input
-              width={'100%'}
-              padding={'1em 0.5em'}
-              background={theme.color.base}
-              border={{ radius: '6px' }}
-              defaultValue={props.member.title}
-              onChange={(e) => (props.member.title = e.target.value)}
-            />{' '}
-          </TopField>
+          <TopField title={'選手の写真'}></TopField>
+          <Upload
+            folder={'thumbnail'}
+            name={thumbnail ? thumbnail.name : undefined}
+            url={thumbnail ? thumbnail.url : undefined}
+            onUpload={(info) => setThumbnail(info)}
+          />
         </FlexBox>
       </ColorBox>
 
@@ -184,105 +142,6 @@ export const MemberEditorSidebar = (props: {
               </ColorBox>
             </CursorBox>
           </TopField>
-        </FlexBox>
-      </ColorBox>
-      <ColorBox
-        background={theme.color.gray06}
-        width={'100%'}
-        radius={'16px'}
-        grow={'9999'}
-        overflowY={'scroll'}
-        position={'relative'}
-      >
-        <FlexBox
-          way={'column'}
-          position={'absolute'}
-          padding={'1em'}
-          width={'100%'}
-          gap={'1em'}
-        >
-          <BottomField
-            title={'スラッグ'}
-            description={'公開した記事のURL末尾を設定します'}
-          >
-            <Input
-              width={'100%'}
-              padding={'1em 0.5em'}
-              background={theme.color.gray06}
-              border={{ radius: '6px' }}
-              defaultValue={props.member.slug}
-              onChange={(e) => (props.member.slug = e.target.value)}
-            />
-          </BottomField>
-          <BottomField
-            title={'カテゴリー'}
-            description={'この投稿のカテゴリーを設定します'}
-          >
-            {props.categories.length <= 0 && (
-              <ColorBox
-                radius={'10px'}
-                padding={'1em'}
-                background={theme.color.gray06}
-              >
-                <FlexBox way={'column'}>
-                  <Sentence size={moduler(-3)} color={theme.color.gray03}>
-                    選択できるカテゴリーはありません。
-                  </Sentence>
-                  <Sentence size={moduler(-3)} color={theme.color.gray03}>
-                    設定画面にてカテゴリーを作成すると選択できるようになります。
-                  </Sentence>
-                </FlexBox>
-              </ColorBox>
-            )}
-            {props.categories.length > 0 && (
-              <Select
-                values={props.categories.map((c) => c.name)}
-                defaultValue={
-                  props.categories.filter((c) => c.id === props.member.category)
-                    .length > 0
-                    ? props.categories.filter(
-                        (c) => c.id === props.member.category
-                      )[0].name
-                    : ''
-                }
-                onChange={(s) => {
-                  const category = props.categories.filter(
-                    (c) => c.name === s
-                  )[0]
-                  props.member.category = category.id
-                }}
-              />
-            )}
-          </BottomField>
-          <BottomField
-            title={'サムネイル'}
-            description={'記事のサムネイルを設定します'}
-          >
-            <Upload
-              folder={'thumbnail'}
-              name={thumbnail ? thumbnail.name : undefined}
-              url={thumbnail ? thumbnail.url : undefined}
-              onUpload={(info) => setThumbnail(info)}
-            />
-          </BottomField>
-          <BottomField
-            title={'カラー'}
-            description={'この投稿のテーマカラーを設定します'}
-          >
-            <Input
-              width={'100%'}
-              padding={'1em 0.5em'}
-              background={theme.color.gray06}
-              border={{ radius: '6px' }}
-              defaultValue={
-                props.member.custom ? props.member.custom.color ?? '' : ''
-              }
-              onChange={(e) => {
-                if (!props.member.custom) props.member.custom = {}
-                props.member.custom.color = e.target.value
-              }}
-            />
-          </BottomField>
         </FlexBox>
       </ColorBox>
     </FlexBox>
