@@ -1,9 +1,7 @@
 import { Notification } from 'components/notification/types/notification'
-import { take } from 'firestore/utils/take'
 import { Member } from '../types/member'
 import { MemberSlug } from '../types/slug'
 import { errorList } from './error'
-import { updateMemberSlugs } from './slug'
 
 export const validateMember = async (
   p: Member,

@@ -7,17 +7,11 @@ import { useEffect, useRef, useState, MutableRefObject, ReactNode } from 'react'
 import { useMemberEditor } from '../../hooks/useMemberEditor'
 import { MemberMarkdown } from './member-markdown'
 import { Box } from 'shared/elements/box/common'
-import 'easymde/dist/easymde.min.css'
 import styled from 'styled-components'
-// import SimpleMde from "react-simplemde-editor";
-import dynamic from 'next/dynamic'
 import { FlexBox } from 'shared/elements/box/flex'
-import { Sentence, Word } from 'shared/elements/text/common'
+import { Word } from 'shared/elements/text/common'
 import { moduler } from 'shared/utils/styles'
 import { Input } from 'shared/elements/field/input'
-const SimpleMde = dynamic(() => import('react-simplemde-editor'), {
-  ssr: false
-})
 
 export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
   const { isPreview, uploadInfo, onInsertImgMarkdown } = useMemberEditor()
@@ -29,31 +23,7 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
   // マークダウンタブ追加
   const [, setMarkdown] = useState<string>(props.member.markdown ?? '')
 
-  // 画像をアップロードする処理
-  const imageUploadFunction = (file: File) => {
-    if (
-      file.type === 'image/png' ||
-      file.type === 'image/jpeg' ||
-      file.type === 'image/heic' ||
-      file.type === 'image/gif'
-    ) {
-      // const file = files[0]
-      const uploadedImageUrl = uploadImage(file)
-      // アップロードしたURLを取得してマークダウンに埋め込む
-      setMarkdown((preMarkdown) => {
-        return preMarkdown + `![image](${uploadedImageUrl})`
-      })
-    }
-  }
-
   const editor = useMemberEditor()
-
-  const uploadImage = async (file: File) => {
-    try {
-      // 画像アップロード処理を実行
-      editor.onUploadImage(file)
-    } catch (error) {}
-  }
 
   useEffect(() => {
     setMarkdown(props.member.markdown ?? '')
@@ -319,34 +289,5 @@ const TopField = (props: { title: string; children?: ReactNode }) => {
       </Word>
       {props.children}
     </FlexBox>
-  )
-}
-
-const BottomField = (props: {
-  title: string
-  description: string
-  children?: ReactNode
-}) => {
-  const { theme } = useTheme()
-  return (
-    <ColorBox
-      background={theme.color.base}
-      width={'100%'}
-      padding={'1em'}
-      radius={'12px'}
-      shrink={'0'}
-    >
-      <FlexBox way={'column'} width={'100%'} gap={'2px'}>
-        <Word weight={'600'} size={moduler(-2)} color={theme.color.main}>
-          {props.title}
-        </Word>
-        <Sentence size={moduler(-3)} color={theme.color.gray01}>
-          {props.description}
-        </Sentence>
-        <Box width={'100%'} margin={'12px 0 0 0'}>
-          {props.children}
-        </Box>
-      </FlexBox>
-    </ColorBox>
   )
 }
