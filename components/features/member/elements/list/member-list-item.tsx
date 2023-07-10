@@ -170,7 +170,7 @@ export const _MemberListItem = (props: { member: Member }) => {
                     weight={'bold'}
                     color={theme.color.main}
                   >
-                    {props.member.title}
+                    {props.member.name}
                   </Word>
                   <FlexBox way={'column'}>
                     <Word

@@ -13,14 +13,14 @@ export const validateMember = async (
   }
 
   // empty number
-  if (p.number === '' || p.number === null || p.number === undefined) {
-    return errorList.number_is_empty
-  }
+  // if (p.number === '' || p.number === null || p.number === undefined) {
+  //   return errorList.number_is_empty
+  // }
 
   // empty position
-  if (p.position === '' || p.position === null || p.position === undefined) {
-    return errorList.position_is_empty
-  }
+  // if (p.position === '' || p.position === null || p.position === undefined) {
+  //   return errorList.position_is_empty
+  // }
 
   // same number
   // // const slugs = (await take<MemberSlug>('slug', 'member')) as MemberSlug

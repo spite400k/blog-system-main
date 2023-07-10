@@ -163,32 +163,3 @@ const TopField = (props: { title: string; children?: ReactNode }) => {
     </FlexBox>
   )
 }
-
-const BottomField = (props: {
-  title: string
-  description: string
-  children?: ReactNode
-}) => {
-  const { theme } = useTheme()
-  return (
-    <ColorBox
-      background={theme.color.base}
-      width={'100%'}
-      padding={'1em'}
-      radius={'12px'}
-      shrink={'0'}
-    >
-      <FlexBox way={'column'} width={'100%'} gap={'2px'}>
-        <Word weight={'600'} size={moduler(-2)} color={theme.color.main}>
-          {props.title}
-        </Word>
-        <Sentence size={moduler(-3)} color={theme.color.gray01}>
-          {props.description}
-        </Sentence>
-        <Box width={'100%'} margin={'12px 0 0 0'}>
-          {props.children}
-        </Box>
-      </FlexBox>
-    </ColorBox>
-  )
-}

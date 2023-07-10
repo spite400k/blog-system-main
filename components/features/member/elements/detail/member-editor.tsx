@@ -41,26 +41,6 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
 
   return (
     <MemberEditorBox background={theme.color.gray06}>
-      {/* プレビュー領域 */}
-      <ColorBox
-        width={'100%'}
-        height={'100%'}
-        padding={'0 4em'}
-        position={'absolute'}
-        opacity={isPreview ? 1 : 0}
-        // overflowY={isPreview ? 'scroll' : 'hidden'}
-      >
-        <TransformBox
-          width={'100%'}
-          height={'100%'}
-          transform={isPreview ? 'translateY(0)' : 'translateY(1em)'}
-        >
-          <Box width={'100%'} padding={'2em 0 0 0'}>
-            <MemberMarkdown member={props.member} />
-          </Box>
-        </TransformBox>
-      </ColorBox>
-
       {/* 記入領域 */}
       <BorderBox
         width={'100%'}
@@ -78,6 +58,30 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
           background={theme.color.base}
           position={'relative'}
         >
+          {/* プレビュー領域 */}
+          <ColorBox
+            width={'100%'}
+            height={'100%'}
+            padding={'0 4em'}
+            position={'absolute'}
+            opacity={isPreview ? 1 : 0}
+            // overflowY={isPreview ? 'scroll' : 'hidden'}
+          >
+            <TransformBox
+              width={'100%'}
+              height={'100%'}
+              transform={isPreview ? 'translateY(0)' : 'translateY(1em)'}
+            >
+              <Box width={'100%'} padding={'2em 0 0 0'}>
+                {props.member.name}
+                {props.member.nameEnglish}
+                {props.member.number}
+                {props.member.position}
+                {props.member.thumbnail?.url}
+                <MemberMarkdown member={props.member} />
+              </Box>
+            </TransformBox>
+          </ColorBox>
           <ColorBox
             width={'100%'}
             height={'100%'}
