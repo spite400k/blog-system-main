@@ -23,8 +23,6 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
   // マークダウンタブ追加
   const [, setMarkdown] = useState<string>(props.member.markdown ?? '')
 
-  const editor = useMemberEditor()
-
   useEffect(() => {
     setMarkdown(props.member.markdown ?? '')
   }, [isPreview])
