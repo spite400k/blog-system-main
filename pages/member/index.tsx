@@ -42,11 +42,7 @@ const Home: NextPage = () => {
               padding={'2em 0'}
             >
               {members.map((p: Member) => (
-                <MemberListItem
-                  key={p.id}
-                  member={p}
-                  category={findInArray(categories, (c) => c.id === p.category)}
-                />
+                <MemberListItem key={p.id} member={p} />
               ))}
             </FlexBox>
           </Box>

@@ -11,10 +11,7 @@ import { moduler } from 'shared/utils/styles'
 import { getDateText, getTimeText } from 'shared/utils/date'
 import { Category } from 'category/types/category'
 
-export const MemberListItem = (props: {
-  member: Member
-  category: Category | null
-}) => {
+export const MemberListItem = (props: { member: Member }) => {
   const { theme } = useTheme()
 
   return (
@@ -73,26 +70,6 @@ export const MemberListItem = (props: {
                 >
                   {props.member.name}
                 </Word>
-                <BorderBox
-                  borderPosition="all"
-                  borderWidth="2px"
-                  borderColor={theme.color.main}
-                  borderStyle={'solid'}
-                  radius={'6px'}
-                  overflow={'hidden'}
-                >
-                  <ColorBox padding={'4px 1em'} background={theme.color.base}>
-                    <Word
-                      size={moduler(-2)}
-                      weight={'bold'}
-                      color={theme.color.main}
-                    >
-                      {props.category !== null
-                        ? props.category.name
-                        : 'カテゴリーなし'}
-                    </Word>
-                  </ColorBox>
-                </BorderBox>
               </FlexBox>
               <FlexBox way={'row'} gap={'1em'} alignItems={'center'}>
                 <Word
