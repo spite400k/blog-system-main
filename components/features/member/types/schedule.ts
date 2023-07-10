@@ -1,5 +1,5 @@
 export type MemberScheduleRequest = {
   id: string
-  title: string
+  name: string
   releaseDate: string // Date.toString()
 }

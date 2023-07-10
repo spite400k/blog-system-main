@@ -4,7 +4,7 @@ import { MemberScheduleRequest } from '../types/schedule'
 export const schedule = async (member: Member) => {
   const reqData: MemberScheduleRequest = {
     id: member.id,
-    title: member.title ?? '',
+    name: member.name ?? '',
     releaseDate: member.releaseDate.toDate().toString()
   }
   await fetch('/api/admin/member/isr/schedule', {
@@ -18,10 +18,8 @@ export const schedule = async (member: Member) => {
 
 export const refresh = async (member: Member) => {
   const reqData = {
-    category: member.category ?? '',
     id: member.id ?? '',
-    title: member.title ?? '',
-    slug: member.slug,
+    name: member.name ?? '',
     releaseDate: member.releaseDate.toDate().toString()
   }
   await fetch('/api/admin/member/isr/refresh', {
