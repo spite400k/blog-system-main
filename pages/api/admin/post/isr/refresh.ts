@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { WebClient } from '@slack/web-api'
 import admin from 'firebase-admin'
-import { TayoriSettings } from 'components/settings/types/settings'
+import { TayoriSettings } from 'components/features/settings/types/settings'
 import { Category } from 'category/types/category'
 import { isURL } from 'shared/utils/string'
 

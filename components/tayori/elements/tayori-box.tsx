@@ -1,7 +1,7 @@
 import { RecoilRoot } from 'recoil'
 import { Box } from 'shared/elements/box/common'
 import { Notifier } from 'components/notification/elements/notification'
-import { UserProvider } from 'components/user/hooks/useUser'
+import { UserProvider } from 'components/features/user/hooks/useUser'
 import { AnimatePresence } from 'framer-motion'
 
 export const TayoriBox = (props: { children: React.ReactNode }) => {

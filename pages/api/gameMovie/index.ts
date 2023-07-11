@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import { Category } from 'category/types/category'
 import admin from 'firebase-admin'
-import { GameMovie } from 'components/gameMovie/types/gameMovie'
+import { GameMovie } from 'components/features/gameMovie/types/gameMovie'
 
 export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {

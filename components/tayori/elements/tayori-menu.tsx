@@ -1,4 +1,4 @@
-import { UserIcon } from 'components/user/elements/user-icon'
+import { UserIcon } from 'components/features/user/elements/user-icon'
 import { ColorBox } from 'shared/elements/box/color'
 import { FlexBox } from 'shared/elements/box/flex'
 import { IconLink } from 'shared/elements/link/icon'

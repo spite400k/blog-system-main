@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { SoyoUserClaim } from 'components/user/types/claim'
+import { SoyoUserClaim } from 'components/features/user/types/claim'
 import admin from 'firebase-admin'
 
 type ReqBody = {

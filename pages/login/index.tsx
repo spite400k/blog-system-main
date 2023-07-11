@@ -1,10 +1,10 @@
-import { useUser } from 'auth/hooks/useUser'
-import { UserLogin } from 'components/user/elements/user-login'
+import { useUser } from 'components/features/user/hooks/useUser'
+import { UserLogin } from 'components/features/user/elements/user-login'
 import { useRouter } from 'next/router'
 import { FlexBox } from 'shared/elements/box/flex'
 import { FramerBox } from 'shared/elements/box/framer'
 import { useNotification } from 'notification/hooks/useNotification'
-import { errorList } from 'auth/utils/error'
+import { errorList } from 'components/features/user/utils/error'
 
 export const page = () => {
   const router = useRouter()

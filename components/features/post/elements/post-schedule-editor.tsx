@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { ColorBox } from 'shared/elements/box/color'
 import { useTheme } from 'shared/hooks/useTheme'
 import { Category } from 'category/types/category'
-import { PostScheduleItem } from './member-schedule-item'
+import { PostScheduleItem } from './post-schedule-item'
 import { TayoriSettings } from 'components/features/settings/types/settings'
 import { KeyedMutator } from 'swr'
 

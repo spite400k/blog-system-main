@@ -14,7 +14,7 @@ import { copyObj } from 'shared/utils/object'
 import { saveSettings } from 'components/features/settings/utils/save'
 import { KeyedMutator } from 'swr'
 import { messageList } from 'components/features/settings/utils/message'
-import { PostScheduleEndpointField } from './member-schedule-field'
+import { PostScheduleEndpointField } from './post-schedule-field'
 
 export const PostScheduleItem = (props: {
   settings: TayoriSettings

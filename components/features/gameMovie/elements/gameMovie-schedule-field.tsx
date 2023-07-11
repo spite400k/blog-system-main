@@ -4,10 +4,10 @@ import { FlexBox } from 'shared/elements/box/flex'
 import { Input } from 'shared/elements/field/input'
 import { Image } from 'shared/elements/image/common'
 import { useTheme } from 'shared/hooks/useTheme'
-import { PostScheduleEndpoint } from 'components/features/settings/types/settings'
+import { GameMovieScheduleEndpoint } from 'components/features/settings/types/settings'
 
-export const PostScheduleEndpointField = (props: {
-  schedule: PostScheduleEndpoint
+export const GameMovieScheduleEndpointField = (props: {
+  schedule: GameMovieScheduleEndpoint
   endpoint: string
   index: number
   onSave: (endpoint: string, isNew: boolean) => Promise<void>

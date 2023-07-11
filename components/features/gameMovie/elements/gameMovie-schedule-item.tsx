@@ -7,31 +7,34 @@ import { useTheme } from 'shared/hooks/useTheme'
 import { moduler } from 'shared/utils/styles'
 import { Category } from 'category/types/category'
 import {
-  PostScheduleEndpoint,
+  GameMovieScheduleEndpoint,
   TayoriSettings
 } from 'components/features/settings/types/settings'
 import { copyObj } from 'shared/utils/object'
 import { saveSettings } from 'components/features/settings/utils/save'
 import { KeyedMutator } from 'swr'
 import { messageList } from 'components/features/settings/utils/message'
-import { PostScheduleEndpointField } from './member-schedule-field'
+import { GameMovieScheduleEndpointField } from './gameMovie-schedule-field'
 
-export const PostScheduleItem = (props: {
+export const GameMovieScheduleItem = (props: {
   settings: TayoriSettings
   category: Category
   mutate: KeyedMutator<TayoriSettings[]>
   isLast: boolean
 }) => {
   const { theme } = useTheme()
-  const [schedule, setSchedule] = useState<PostScheduleEndpoint | null>(null)
+  const [schedule, setSchedule] = useState<GameMovieScheduleEndpoint | null>(
+    null
+  )
   const notifier = useNotification()
 
   useEffect(() => {
     const isTargetScheduleExist =
-      props.settings.schedules.filter((s) => s.categoryId === props.category.id)
-        .length > 0
+      props.settings.schedulesGameMovie.filter(
+        (s) => s.categoryId === props.category.id
+      ).length > 0
     const target = isTargetScheduleExist
-      ? props.settings.schedules.filter(
+      ? props.settings.schedulesGameMovie.filter(
           (s) => s.categoryId === props.category.id
         )[0]
       : null
@@ -55,7 +58,7 @@ export const PostScheduleItem = (props: {
     const copy = copyObj(props.settings)
 
     // 削除するエンドポイントを配列から除外
-    copy.schedules.some((schedule) => {
+    copy.schedulesGameMovie.some((schedule) => {
       if (schedule.categoryId === props.category.id) {
         schedule.endpoints.splice(index, 1)
       }
@@ -87,7 +90,7 @@ export const PostScheduleItem = (props: {
         {schedule && (
           <FlexBox way={'column'} width={'100%'} gap={'10px'}>
             {schedule.endpoints.map((endpoint, i) => (
-              <PostScheduleEndpointField
+              <GameMovieScheduleEndpointField
                 key={i}
                 index={i}
                 schedule={schedule}
@@ -98,7 +101,7 @@ export const PostScheduleItem = (props: {
               />
             ))}
 
-            <PostScheduleEndpointField
+            <GameMovieScheduleEndpointField
               schedule={schedule}
               endpoint={''}
               onSave={onSave}

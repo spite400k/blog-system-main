@@ -16,12 +16,13 @@
     "baseUrl": ".",
     "paths": {
       "shared/*": ["components/shared/*"],
-      "auth/*": ["components/user/*"],
+      "auth/*": ["components/features/user/*"],
+      "firebase/*": ["components/firebase/*"],
       "firestore/*": ["components/firestore/*"],
-      "post/*": ["components/post/*"],
+      "post/*": ["components/features/post/*"],
       "category/*": ["components/category/*"],
       "notification/*": ["components/notification/*"],
-      "gameMovie/*": ["components/post/*"],
+      "gameMovie/*": ["components/features/post/*"],
       "member/*": ["components/features/member/*"]
     },
     "incremental": true
