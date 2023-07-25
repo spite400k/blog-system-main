@@ -19,6 +19,7 @@ const CALENDAR_CELL_SIZE = 34
 export const Calendar = (props: {
   date: Date
   onChange: (d: Date) => void
+  isUseTime: boolean // true:時間欄を表示する
 }) => {
   const { theme } = useTheme()
   const [selected, setSelected] = useState<Date>(props.date)
@@ -147,16 +148,20 @@ export const Calendar = (props: {
             ))}
           </FlexBox>
         </FlexBox>
-        <BorderBox
-          width={'100%'}
-          borderPosition={'top'}
-          borderStyle={'solid'}
-          borderColor={theme.color.main}
-          borderWidth={'3px'}
-          padding={'0.5em 0 0 0'}
-        >
-          <Timer date={props.date} onChange={(h, m) => onTimeChange(h, m)} />
-        </BorderBox>
+        {props.isUseTime ? (
+          <BorderBox
+            width={'100%'}
+            borderPosition={'top'}
+            borderStyle={'solid'}
+            borderColor={theme.color.main}
+            borderWidth={'3px'}
+            padding={'0.5em 0 0 0'}
+          >
+            <Timer date={props.date} onChange={(h, m) => onTimeChange(h, m)} />
+          </BorderBox>
+        ) : (
+          <></>
+        )}
       </FlexBox>
     </NeumorphismBox>
   )
@@ -333,7 +338,7 @@ const CalendarWeekDayBox = (props: { day: string }) => {
 }
 
 const CalendarDateBox = (props: {
-  key: number,
+  key: number
   date: Date
   isSelected: boolean
   onSelect: (d: Date) => void

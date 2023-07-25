@@ -162,6 +162,7 @@ export const GameMovieEditorSidebar = (props: {
                 <Calendar
                   date={releaseDate}
                   onChange={(d) => setReleaseDate(d)}
+                  isUseTime={true}
                 />
               </TransformBox>
             </ColorBox>
