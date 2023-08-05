@@ -18,11 +18,12 @@ import { moduler } from 'shared/utils/styles'
 import { Calendar } from 'shared/elements/calendar/calendar'
 import { Timestamp } from 'firebase/firestore'
 import { CursorBox } from 'shared/elements/box/cursor'
+import { Image } from 'shared/elements/image/common'
+import { getDateText } from 'shared/utils/date'
+
 const SimpleMde = dynamic(() => import('react-simplemde-editor'), {
   ssr: false
 })
-import { Image } from 'shared/elements/image/common'
-import { getDateText, getTimeText } from 'shared/utils/date'
 
 export const GameMovieEditor = (props: {
   gameMovie: GameMovie
