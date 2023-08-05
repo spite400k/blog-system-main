@@ -17,8 +17,8 @@ export const createPost = async () => {
     custom: {},
     insDate: Timestamp.fromDate(now),
     excerpt: '',
-    ogImage: { name: 'noImage', url: '/dog.png' },
-    thumbnail: { name: 'noImage', url: '/dog.png' },
+    ogImage: { name: 'noImage', url: '/img/blog/write.svg' },
+    thumbnail: { name: 'noImage', url: '/img/blog/write.svg' },
     tags: []
   }
   const result = insert('post', newPost, newPost.id)

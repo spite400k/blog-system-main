@@ -20,7 +20,7 @@ export const TayoriMenu = () => {
             width={'48px'}
             height={'48px'}
             background={theme.color.gray06}
-            src={'write.svg'}
+            src={'/img/blog/write.svg'}
             href={'/post'}
           />
         </FlexBox>
@@ -38,7 +38,7 @@ export const TayoriMenu = () => {
             width={'48px'}
             height={'48px'}
             background={theme.color.gray06}
-            src={'movie.svg'}
+            src={'/img/video/movie.svg'}
             href={'/gameMovie'}
           />
         </FlexBox>

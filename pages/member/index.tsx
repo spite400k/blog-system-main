@@ -7,8 +7,7 @@ import { FlexBox } from 'shared/elements/box/flex'
 import { useFireStore } from 'firestore/hooks/useFirestore'
 import { Member } from 'member/types/member'
 import { Category } from 'category/types/category'
-import { FramerBox } from 'shared/elements/box/framer'
-import { findInArray } from 'shared/utils/object'
+import { FramerBox } from 'shared/elements/box/framer' 
 
 const Home: NextPage = () => {
   const { data: members } = useFireStore<Member>('member')
