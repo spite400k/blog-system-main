@@ -53,7 +53,7 @@ export const MemberListItem = (props: { member: Member }) => {
                 src={
                   props.member.thumbnail
                     ? props.member.thumbnail.url
-                    : '/dog.png'
+                    : '/member_default.png'
                 }
               />
             </BorderBox>
