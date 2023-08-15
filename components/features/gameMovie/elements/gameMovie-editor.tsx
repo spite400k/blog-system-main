@@ -15,6 +15,12 @@ import { FlexBox } from 'shared/elements/box/flex'
 import { Input } from 'shared/elements/field/input'
 import { Word } from 'shared/elements/text/common'
 import { moduler } from 'shared/utils/styles'
+import { Calendar } from 'shared/elements/calendar/calendar'
+import { Timestamp } from 'firebase/firestore'
+import { CursorBox } from 'shared/elements/box/cursor'
+import { Image } from 'shared/elements/image/common'
+import { getDateText } from 'shared/utils/date'
+
 const SimpleMde = dynamic(() => import('react-simplemde-editor'), {
   ssr: false
 })
@@ -31,6 +37,16 @@ export const GameMovieEditor = (props: {
   const areaRef = useRef() as MutableRefObject<HTMLDivElement>
   // マークダウンタブ追加
   const [, setMarkdown] = useState<string>(props.gameMovie.markdown ?? '')
+
+  // 試合日
+  const [gameDate, setGameDate] = useState<Date>(
+    props.gameMovie.gameDate
+      ? props.gameMovie.gameDate.toDate()
+      : truncateDate(new Date())
+  )
+
+  // カレンダー プレビュー領域
+  const [isCalendarVisible, setCalendarVisible] = useState(false)
 
   // 画像をアップロードする処理
   const imageUploadFunction = (file: File) => {
@@ -72,6 +88,10 @@ export const GameMovieEditor = (props: {
     setMarkdown(props.gameMovie.markdown)
   }, [uploadInfo])
 
+  useEffect(() => {
+    props.gameMovie.gameDate = Timestamp.fromDate(gameDate)
+  }, [gameDate, props.gameMovie])
+
   return (
     <GameMovieEditorBox background={theme.color.gray06}>
       <BorderBox
@@ -83,6 +103,7 @@ export const GameMovieEditor = (props: {
         borderStyle={'solid'}
         radius={'12px'}
         overflow={'hidden'}
+        minHeight={'1000px'}
       >
         <ColorBox
           width={'100%'}
@@ -97,18 +118,200 @@ export const GameMovieEditor = (props: {
             // radius={'16px'}
             shrink={'0'}
           >
-            <FlexBox way={'column'} width={'100%'} gap={'1em'}>
-              <TopField title={'動画URL'}>
-                <Input
-                  width={'100%'}
-                  padding={'1em 0.5em'}
-                  background={theme.color.base}
-                  border={{ radius: '6px' }}
-                  defaultValue={props.gameMovie.videoUrl}
-                  onChange={(e) => (props.gameMovie.videoUrl = e.target.value)}
-                />{' '}
-              </TopField>
-            </FlexBox>
+            <ColorBox
+              background={theme.color.gray06}
+              width={'100%'}
+              padding={'1em'}
+              // radius={'16px'}
+              shrink={'0'}
+            >
+              <FlexBox way={'column'} width={'100%'} gap={'1em'}>
+                <TopField title={'タイトル'}>
+                  <Input
+                    width={'100%'}
+                    padding={'1em 0.5em'}
+                    background={theme.color.base}
+                    border={{ radius: '6px' }}
+                    defaultValue={props.gameMovie.title}
+                    onChange={(e) => (props.gameMovie.title = e.target.value)}
+                  />{' '}
+                </TopField>
+              </FlexBox>
+            </ColorBox>
+            <ColorBox
+              background={theme.color.gray06}
+              width={'100%'}
+              padding={'1em'}
+              // radius={'16px'}
+              shrink={'0'}
+            >
+              <FlexBox way={'column'} width={'100%'} gap={'1em'}>
+                <TopField title={'フル動画URL'}>
+                  <Input
+                    width={'100%'}
+                    padding={'1em 0.5em'}
+                    background={theme.color.base}
+                    border={{ radius: '6px' }}
+                    defaultValue={props.gameMovie.videoUrl}
+                    onChange={(e) =>
+                      (props.gameMovie.videoUrl = e.target.value)
+                    }
+                  />
+                </TopField>
+              </FlexBox>
+            </ColorBox>
+            <ColorBox
+              background={theme.color.gray06}
+              width={'100%'}
+              padding={'1em'}
+              // radius={'16px'}
+              shrink={'0'}
+            >
+              <FlexBox way={'column'} width={'100%'} gap={'1em'}>
+                <TopField title={'ハイライト動画URL'}>
+                  <Input
+                    width={'100%'}
+                    padding={'1em 0.5em'}
+                    background={theme.color.base}
+                    border={{ radius: '6px' }}
+                    defaultValue={props.gameMovie.videoUrlHighlight}
+                    onChange={(e) =>
+                      (props.gameMovie.videoUrlHighlight = e.target.value)
+                    }
+                  />
+                </TopField>
+              </FlexBox>
+            </ColorBox>
+            <ColorBox
+              background={theme.color.gray06}
+              width={'100%'}
+              padding={'1em'}
+              // radius={'16px'}
+              shrink={'0'}
+            >
+              <FlexBox way={'row'} width={'100%'} gap={'1em'}>
+                <TopField title={'試合場所'}>
+                  <Input
+                    width={'100%'}
+                    padding={'1em 0.5em'}
+                    background={theme.color.base}
+                    border={{ radius: '6px' }}
+                    defaultValue={props.gameMovie.place}
+                    onChange={(e) => (props.gameMovie.place = e.target.value)}
+                  />{' '}
+                </TopField>
+
+                <TopField title={'試合日'}>
+                  <ColorBox
+                    position={'absolute'}
+                    opacity={isCalendarVisible ? 1 : 0}
+                  >
+                    <TransformBox
+                      position={'absolute'}
+                      transform={
+                        isCalendarVisible
+                          ? 'translate(-110%, -50%)'
+                          : 'translate(-105%, -50%)'
+                      }
+                    >
+                      <Calendar
+                        date={gameDate}
+                        onChange={(d) => setGameDate(d)}
+                        isUseTime={false}
+                      />
+                    </TransformBox>
+                  </ColorBox>
+                  <CursorBox cursor={'pointer'}>
+                    <ColorBox
+                      background={theme.color.base}
+                      radius={'8px'}
+                      padding={'0.75em 1em'}
+                      onClick={() => setCalendarVisible(!isCalendarVisible)}
+                    >
+                      <FlexBox way={'row'} gap={'1em'} alignItems={'center'}>
+                        <Image
+                          width={'30px'}
+                          height={'30px'}
+                          src={'/calendar.png'}
+                          fit={'contain'}
+                        />
+                        <Word size={moduler(-1)} weight={'600'}>{`${getDateText(
+                          gameDate
+                        )} `}</Word>
+                      </FlexBox>
+                    </ColorBox>
+                  </CursorBox>
+                </TopField>
+              </FlexBox>
+            </ColorBox>
+            <ColorBox
+              background={theme.color.gray06}
+              width={'100%'}
+              padding={'1em'}
+              // radius={'16px'}
+              shrink={'0'}
+            >
+              <FlexBox way={'row'} width={'100%'} gap={'1em'}>
+                <TopField title={'自チーム'}>
+                  <Input
+                    width={'100%'}
+                    padding={'1em 0.5em'}
+                    background={theme.color.base}
+                    border={{ radius: '6px' }}
+                    defaultValue={props.gameMovie.myTeamName}
+                    onChange={(e) =>
+                      (props.gameMovie.myTeamName = e.target.value)
+                    }
+                  />{' '}
+                </TopField>
+                <TopField title={'対戦相手'}>
+                  <Input
+                    width={'100%'}
+                    padding={'1em 0.5em'}
+                    background={theme.color.base}
+                    border={{ radius: '6px' }}
+                    defaultValue={props.gameMovie.opponentName}
+                    onChange={(e) =>
+                      (props.gameMovie.opponentName = e.target.value)
+                    }
+                  />{' '}
+                </TopField>
+              </FlexBox>
+            </ColorBox>
+            <ColorBox
+              background={theme.color.gray06}
+              width={'100%'}
+              padding={'1em'}
+              // radius={'16px'}
+              shrink={'0'}
+            >
+              <FlexBox way={'row'} width={'100%'} gap={'1em'}>
+                <TopField title={'自チーム得点'}>
+                  <Input
+                    width={'100%'}
+                    padding={'1em 0.5em'}
+                    background={theme.color.base}
+                    border={{ radius: '6px' }}
+                    defaultValue={props.gameMovie.myTeamPoint}
+                    onChange={(e) =>
+                      (props.gameMovie.myTeamPoint = Number(e.target.value))
+                    }
+                  />{' '}
+                </TopField>
+                <TopField title={'対戦相手得点'}>
+                  <Input
+                    width={'100%'}
+                    padding={'1em 0.5em'}
+                    background={theme.color.base}
+                    border={{ radius: '6px' }}
+                    defaultValue={props.gameMovie.opponentPoint}
+                    onChange={(e) =>
+                      (props.gameMovie.opponentPoint = Number(e.target.value))
+                    }
+                  />{' '}
+                </TopField>
+              </FlexBox>
+            </ColorBox>
           </ColorBox>
           <ColorBox
             width={'100%'}
@@ -207,4 +410,15 @@ const TopField = (props: { title: string; children?: ReactNode }) => {
       {props.children}
     </FlexBox>
   )
+}
+
+/**
+ * 日付の時刻を切り捨てる(00:00:00にする)
+ * @param date 対象日付
+ */
+const truncateDate = (date: Date): Date => {
+  if (date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate())
+  }
+  return date
 }

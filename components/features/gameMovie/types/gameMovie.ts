@@ -18,5 +18,12 @@ export type GameMovie = {
   gameDate:Timestamp
   opponent:string
   custom?: any
-  videoUrl:string
+  videoUrl: string
+  videoUrlHighlight: string
+  place: string
+  gameDate?: Timestamp
+  opponentName: string
+  opponentPoint: number
+  myTeamName: string
+  myTeamPoint: number
 }
