@@ -14,6 +14,9 @@ export type GameMovie = {
   excerpt: string
   ogImage: StorageObject
   tags: string[]
+  place:string
+  gameDate:Timestamp
+  opponent:string
   custom?: any
   videoUrl:string
 }
