@@ -5,3 +5,4 @@ export type collections =
   | 'category'
   | 'gameMovie'
   | 'member'
+  | 'tbl_calendar'
