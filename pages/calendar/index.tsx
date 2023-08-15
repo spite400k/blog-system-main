@@ -13,8 +13,8 @@ import FullCalendar, {
 
 // FullCalendarで月表示を可能にするプラグイン。
 import dayGridPlugin from '@fullcalendar/daygrid';
-//日本語対応のためのインポート
-import jaLocale from "@fullcalendar/core/locales/ja"; //追加
+// 日本語対応のためのインポート
+import jaLocale from "@fullcalendar/core/locales/ja"; // 追加
 import { Tooltip } from 'shared/elements/tooltips'
 
 // import { ToolTip } from "shared/elements/tooltips";
@@ -54,8 +54,8 @@ const Home: NextPage = () => {
     return {
       id: calendar.id,
       title: calendar.title,
-      start: start,
-      end: end,
+      // start: start,
+      // end: end,
       description: calendar.description,
       backgroundColor: calendar.backgroundColor,
       borderColor: calendar.borderColor,
