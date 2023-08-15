@@ -13,8 +13,6 @@ import { CursorBox } from 'shared/elements/box/cursor'
 import { getDateText, getTimeText } from 'shared/utils/date'
 import { useCalendarEditor } from '../../hooks/useCalendarEditor'
 import { Timestamp } from 'firebase/firestore'
-import { Upload } from 'shared/elements/field/upload'
-import { StorageObject } from 'components/storage/types/obj'
 import { Category } from 'components/category/types/category'
 
 export const CalendarEditorSidebar = (props: {

@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 
 export const Tooltip = ({ message, children }: { message: string; children: ReactNode }) => {
   const [show, setShow] = useState(true);

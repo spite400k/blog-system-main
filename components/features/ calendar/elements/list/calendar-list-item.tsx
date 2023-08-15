@@ -9,7 +9,6 @@ import { Word } from 'shared/elements/text/common'
 import { useTheme } from 'shared/hooks/useTheme'
 import { moduler } from 'shared/utils/styles'
 import { getDateText, getTimeText } from 'shared/utils/date'
-import { Category } from 'category/types/category'
 
 export const CalendarListItem = (props: { calendar: CalendarType }) => {
   const { theme } = useTheme()
