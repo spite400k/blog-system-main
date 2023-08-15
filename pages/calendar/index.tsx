@@ -7,13 +7,12 @@ import { FramerBox } from 'shared/elements/box/framer'
 import { CalendarType } from 'components/features/ calendar/types/calendar'
 import { CalendarHomeHeader } from 'components/features/ calendar/elements/list/calendar-home-header'
 import { CalendarListItem } from 'components/features/ calendar/elements/list/calendar-list-item'
-import FullCalendar from "@fullcalendar/react";
-import EventContentArg from "@fullcalendar/react";
+import FullCalendar, {
+  EventContentArg,
+} from "@fullcalendar/react";
 
 // FullCalendarで月表示を可能にするプラグイン。
 import dayGridPlugin from '@fullcalendar/daygrid';
-// FullCalendarで日付や時間が選択できるようになるプラグイン。
-// import interactionPlugin from "@fullcalendar/interaction";
 //日本語対応のためのインポート
 import jaLocale from "@fullcalendar/core/locales/ja"; //追加
 import { Tooltip } from 'shared/elements/tooltips'
