@@ -8,13 +8,12 @@ import { CalendarType } from 'components/features/ calendar/types/calendar'
 import { CalendarHomeHeader } from 'components/features/ calendar/elements/list/calendar-home-header'
 import { CalendarListItem } from 'components/features/ calendar/elements/list/calendar-list-item'
 import FullCalendar from "@fullcalendar/react";
-import EventContentArg from "@fullcalendar/react";
-
 // FullCalendarで月表示を可能にするプラグイン。
 import dayGridPlugin from '@fullcalendar/daygrid';
 // 日本語対応のためのインポート
 import jaLocale from "@fullcalendar/core/locales/ja"; // 追加
 import { Tooltip } from 'shared/elements/tooltips'
+import { aa } from '@fullcalendar/core/internal-common'
 
 // import { ToolTip } from "shared/elements/tooltips";
 
@@ -61,7 +60,7 @@ const Home: NextPage = () => {
     };
   });
 
-  const EventComponent = (arg: EventContentArg) => (
+  const EventComponent = (arg) => (
     <Tooltip message={arg.event.title}>
       <div>{arg.event.title}</div>
     </Tooltip>
@@ -136,7 +135,7 @@ const Home: NextPage = () => {
               //   }
               // }
               
-              eventContent={(arg: EventContentArg) => EventComponent(arg)}
+              eventContent={(arg) => EventComponent(arg)}
             />
           </FlexBox>
         </FlexBox>
