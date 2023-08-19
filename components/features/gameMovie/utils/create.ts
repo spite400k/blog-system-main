@@ -26,7 +26,9 @@ export const createGameMovie = async () => {
     opponentName: '',
     opponentPoint: 0,
     myTeamName: '',
-    myTeamPoint: 0
+    myTeamPoint: 0,
+    gameDate: Timestamp.fromDate(now),
+    opponent: ''
   }
   const result = insert('gameMovie', newGameMovie, newGameMovie.id)
   return result ? newGameMovie : null
