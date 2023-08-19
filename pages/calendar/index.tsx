@@ -31,7 +31,7 @@ const Home: NextPage = () => {
 
   const calendarList = calendars.map((calendar) => {
 
-    const start = new Date(new Date(
+    const startDate = new Date(new Date(
       calendar.start.seconds * 1000,
     ).toLocaleDateString('ja-JP', {
       year: 'numeric',
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
       hour: 'numeric',
       minute: 'numeric',
     }));
-    const end = new Date(new Date(
+    const endDate = new Date(new Date(
       calendar.end.seconds * 1000,
     ).toLocaleDateString('ja-JP', {
       year: 'numeric',
@@ -53,8 +53,8 @@ const Home: NextPage = () => {
     return {
       id: calendar.id,
       title: calendar.title,
-      start: start,
-      end: end,
+      start: startDate,
+      end: endDate,
       description: calendar.description,
       backgroundColor: calendar.backgroundColor,
       borderColor: calendar.borderColor,
