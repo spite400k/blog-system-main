@@ -54,8 +54,8 @@ const Home: NextPage = () => {
     return {
       id: calendar.id,
       title: calendar.title,
-      // start: start,
-      // end: end,
+      start: start,
+      end: end,
       description: calendar.description,
       backgroundColor: calendar.backgroundColor,
       borderColor: calendar.borderColor,
