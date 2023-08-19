@@ -7,9 +7,8 @@ import { FramerBox } from 'shared/elements/box/framer'
 import { CalendarType } from 'components/features/ calendar/types/calendar'
 import { CalendarHomeHeader } from 'components/features/ calendar/elements/list/calendar-home-header'
 import { CalendarListItem } from 'components/features/ calendar/elements/list/calendar-list-item'
-import FullCalendar, {
-  EventContentArg,
-} from "@fullcalendar/react";
+import FullCalendar from "@fullcalendar/react";
+import EventContentArg from "@fullcalendar/react";
 
 // FullCalendarで月表示を可能にするプラグイン。
 import dayGridPlugin from '@fullcalendar/daygrid';
