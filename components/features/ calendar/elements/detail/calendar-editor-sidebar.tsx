@@ -90,6 +90,8 @@ export const CalendarEditorSidebar = (props: {
                 <Calendar
                   date={releaseDate}
                   onChange={(d) => setReleaseDate(d)}
+                  isUseTime={false}
+        
                 />
               </TransformBox>
             </ColorBox>
