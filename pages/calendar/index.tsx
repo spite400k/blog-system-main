@@ -60,7 +60,7 @@ const Home: NextPage = () => {
     };
   });
 
-  const EventComponent = (arg) => (
+  const EventComponent = (arg: aa) => (
     <Tooltip message={arg.event.title}>
       <div>{arg.event.title}</div>
     </Tooltip>
