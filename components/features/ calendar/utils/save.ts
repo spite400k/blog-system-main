@@ -11,10 +11,6 @@ export const saveCalendar = async (calendar: CalendarType) => {
   if (error) {
     return error
   }
-
-  console.log("登録値")
-  console.log(calendar)
-
   // update calendar
   const result = await update<CalendarType>('tbl_calendar', calendar.id, calendar)
 

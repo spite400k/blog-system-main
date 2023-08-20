@@ -69,8 +69,8 @@ export const CalendarEditorHeader = (props: { calendar: CalendarType }) => {
           </HeaderButtonBox>
           <Button
             onClick={async () => {
-              console.log("saveCalendar")
-              console.log(props.calendar)
+              // console.log("saveCalendar")
+              // console.log(props.calendar)
               const error = await saveCalendar(props.calendar)
               if (error === null) {
                 notifier.show(

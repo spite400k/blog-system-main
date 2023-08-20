@@ -30,8 +30,6 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const calendar = docCalendar.docs[0].data() as CalendarType
 
-    console.log(calendar)
-
     return res.status(200).json({
       id: calendar.id,
       title: calendar.title,
