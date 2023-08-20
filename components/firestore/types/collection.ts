@@ -4,5 +4,6 @@ export type collections =
   | 'settings'
   | 'category'
   | 'gameMovie'
+  | 'gameMovie2air'
   | 'member'
   | 'tbl_calendar'

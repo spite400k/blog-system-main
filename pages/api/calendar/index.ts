@@ -46,8 +46,6 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const calendars = docCalendars.docs.map((docCalendar) => {
       const calendar = docCalendar.data() as CalendarType
 
-      console.log(calendar)
-
       return {
         id: calendar.id,
         title: calendar.title,
