@@ -8,13 +8,14 @@ import { useState } from 'react'
 import { Box } from 'shared/elements/box/common'
 import { FlexBox } from 'shared/elements/box/flex'
 import { FramerBox } from 'shared/elements/box/framer'
-import { GameMovie } from 'components/features/gameMovie/types/gameMovie'
+// import { GameMovie } from 'components/features/gameMovie/types/gameMovie'
+import { GameMovie2air } from 'components/features/gameMovie2air/types/gameMovie2air'
 
 export const Page = () => {
   const router = useRouter()
   const { id } = router.query
   const [isPreview, setPreviewMode] = useState(false)
-  const { data: gameMovie2air } = useFireStore<GameMovie>('gameMovie', id as string)
+  const { data: gameMovie2air } = useFireStore<GameMovie2air>('gameMovie2air', id as string)
   const { data: categories } = useFireStore<Category>('category')
 
   if (!gameMovie2air || !categories) return <></>
@@ -23,7 +24,7 @@ export const Page = () => {
   return (
     <FramerBox>
       <FlexBox width={'100%'} height={'100vh'} way={'column'}>
-        <GameMovie2airEditorHeader gameMovie2air={gameMovie2air[0]} />
+        <GameMovie2airEditorHeader gameMovie2air={gameMovie2air[0]}/>
         <FlexBox
           padding={'0 3em 0 3em'}
           width={'100%'}

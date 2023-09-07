@@ -21,7 +21,7 @@ export const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const slug = query.slug as string
     const db = admin.firestore()
 
-    const docPost = await db.collection('post').where('slug', '==', slug).get()
+    const docPost = await db.collection('gameMovie2air').where('slug', '==', slug).get()
 
     if (docPost.empty) {
       return res.status(404).json({ message: 'slug is invalid' })
