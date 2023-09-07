@@ -6,7 +6,7 @@ import 'video.js/dist/video-js.css';
 function VideoPlayer (props : videojs.PlayerOptions) {
 
   const [player, setPlayer] = useState<videojs.Player>();
-  const videoNodeId: string = 'videojs-player';
+  const videoNodeId = 'videojs-player';
 
   useEffect(() => {
 
