@@ -8,6 +8,8 @@ export type GameMovieScheduleEndpoint = {
   endpoints: string[]
 }
 
+
+
 export type CalendarScheduleEndpoint = {
   categoryId: string
   endpoints: string[]
@@ -16,4 +18,5 @@ export type CalendarScheduleEndpoint = {
 export type TayoriSettings = {
   schedules: PostScheduleEndpoint[]
   schedulesGameMovie: GameMovieScheduleEndpoint[]
+  schedulesGameMovie2air: GameMovieScheduleEndpoint[]
 }
