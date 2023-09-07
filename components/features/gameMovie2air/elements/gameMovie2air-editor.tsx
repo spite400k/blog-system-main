@@ -25,7 +25,7 @@ export const GameMovie2airEditor = (props: {
   isPreview: boolean
 }) => {
   const { theme } = useTheme()
-  const notifier = useNotification()
+  // const notifier = useNotification()
 
   const editor = useGameMovie2airEditor()
 
@@ -285,7 +285,8 @@ export const GameMovie2airEditor = (props: {
                           onChange={async (e) => {
                             const answer = window.confirm('登録しますがよろしいですか？')
                             if (!answer) {
-                              throw 'Abort route'
+                              const err = new Error('An error occurred');
+                              throw err;
                             }
                             const files = e.currentTarget.files
                             if (!files) return
