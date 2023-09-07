@@ -42,7 +42,7 @@ export const TayoriMenu = () => {
             href={'/gameMovie'}
           />
         </FlexBox>
-        <FlexBox way={'column'} gap={'1em'} grow={'9999'}>
+        {/* <FlexBox way={'column'} gap={'1em'} grow={'9999'}>
           <IconLink
             width={'48px'}
             height={'48px'}
@@ -50,7 +50,7 @@ export const TayoriMenu = () => {
             src={'/img/menu/movie.svg'}
             href={'/gameMovie2air'}
           />2
-        </FlexBox>
+        </FlexBox> */}
         <FlexBox way={'column'} gap={'1em'} grow={'9999'}>
           <IconLink
             width={'48px'}
