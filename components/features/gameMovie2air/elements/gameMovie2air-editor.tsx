@@ -16,11 +16,6 @@ import { Image } from 'shared/elements/image/common'
 import { getDateText } from 'shared/utils/date'
 import videojs from 'video.js';
 import VideoPlayer from 'shared/elements/video/VideoPlayer'
-import { Button } from 'shared/elements/button/common'
-import saveGameMovie2air from '../utils/save'
-import { errorList } from '../utils/error'
-import { messageList } from '../utils/message'
-import { schedule } from '../utils/schedule'
 import { useNotification } from 'notification/hooks/useNotification'
 import { useGameMovie2airEditor } from '../hooks/useGameMovie2airEditor'
 
@@ -51,10 +46,13 @@ export const GameMovie2airEditor = (props: {
 
   let videoJsOptions: videojs.PlayerOptions = {
     controls: true,
-    muted: true,
+    preload: 'auto',
+    responsive:true,
+    fluid: false,
+    height: 300,
     poster:"/img/video/GOAT-FC-Logo.png",
     sources: [{
-      src: 'http://vjs.zencdn.net/v/oceans.mp4',
+      src: props.gameMovie2air.videoUrlHighlight ?? 'http://vjs.zencdn.net/v/oceans.mp4',
       type: 'video/mp4'
     }]
   };
@@ -67,7 +65,9 @@ export const GameMovie2airEditor = (props: {
         type: 'video/mp4'
       }]
     };
-  }, [props.gameMovie2air.videoUrlHighlight])
+    console.log("videoJsOptions")
+    console.log(videoJsOptions)
+  }, [props.gameMovie2air])
   
 
   return (
@@ -293,6 +293,7 @@ export const GameMovie2airEditor = (props: {
                             props.gameMovie2air.fileNameHighlight = files[0].name;
                             const info = await editor.onUploadVideo(files[0])
                             props.gameMovie2air.videoUrlHighlight = info?info.url:"";
+                            // console.log(props.gameMovie2air.videoUrlHighlight)
                           }}
                         />
                         <TransformBox hover={'scale(1.1)'}>
