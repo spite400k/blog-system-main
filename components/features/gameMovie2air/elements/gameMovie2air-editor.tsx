@@ -16,7 +16,7 @@ import { Image } from 'shared/elements/image/common'
 import { getDateText } from 'shared/utils/date'
 import videojs from 'video.js';
 import VideoPlayer from 'shared/elements/video/VideoPlayer'
-import { useNotification } from 'notification/hooks/useNotification'
+// import { useNotification } from 'notification/hooks/useNotification'
 import { useGameMovie2airEditor } from '../hooks/useGameMovie2airEditor'
 
 
