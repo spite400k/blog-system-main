@@ -28,7 +28,8 @@ export const createGameMovie2air = async () => {
     myTeamName: '',
     myTeamPoint: 0,
     gameDate: Timestamp.fromDate(now),
-    opponent: ''
+    opponent: '',
+    fileNameHighlight: ''
   }
   const result = insert('gameMovie2air', newGameMovie2air, newGameMovie2air.id)
   return result ? newGameMovie2air : null
