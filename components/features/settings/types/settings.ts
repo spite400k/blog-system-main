@@ -7,7 +7,10 @@ export type GameMovieScheduleEndpoint = {
   categoryId: string
   endpoints: string[]
 }
-
+export type GameMovie2airScheduleEndpoint = {
+  categoryId: string
+  endpoints: string[]
+}
 
 
 export type CalendarScheduleEndpoint = {
