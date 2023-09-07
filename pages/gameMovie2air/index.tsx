@@ -5,13 +5,13 @@ import { GameMovie2airListItem } from 'components/features/gameMovie2air/element
 import { Box } from 'shared/elements/box/common'
 import { FlexBox } from 'shared/elements/box/flex'
 import { useFireStore } from 'firestore/hooks/useFirestore'
-import { GameMovie } from 'components/features/gameMovie/types/gameMovie'
 import { Category } from 'category/types/category'
 import { FramerBox } from 'shared/elements/box/framer'
 import { findInArray } from 'shared/utils/object'
+import { GameMovie2air } from 'components/features/gameMovie2air/types/gameMovie2air'
 
 const Home: NextPage = () => {
-  const { data: gameMovie2airs } = useFireStore<GameMovie>('gameMovie')
+  const { data: gameMovie2airs } = useFireStore<GameMovie2air>('gameMovie2air')
   const { data: categories } = useFireStore<Category>('category')
 
   if (!gameMovie2airs || !categories) return <></>
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
               wrap={'wrap'}
               padding={'2em 0'}
             >
-              {gameMovie2airs.map((p: GameMovie) => (
+              {gameMovie2airs.map((p: GameMovie2air) => (
                 <GameMovie2airListItem
                   key={p.id}
                   gameMovie2air={p}
