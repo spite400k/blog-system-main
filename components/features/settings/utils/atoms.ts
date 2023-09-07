@@ -6,6 +6,8 @@ export const settingsState = atom<TayoriSettings>({
   key: 'settings',
   default: {
     schedules: [],
-    schedulesGameMovie: []
+    schedulesGameMovie: [],
+    schedulesGameMovie2air: [],
+
   }
 })
