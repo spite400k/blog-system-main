@@ -59,11 +59,11 @@ const Home: NextPage = () => {
     }
   })
 
-  const EventComponent = (arg: aa) => (
-    <Tooltip message={arg.event.title}>
-      <div>{arg.event.title}</div>
-    </Tooltip>
-  )
+  // const EventComponent = (arg: aa) => (
+  //   <Tooltip message={arg.event.title}>
+  //     <div>{arg.event.title}</div>
+  //   </Tooltip>
+  // )
 
   return (
     <FramerBox>
