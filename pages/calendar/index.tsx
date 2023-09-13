@@ -13,7 +13,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 // 日本語対応のためのインポート
 import jaLocale from '@fullcalendar/core/locales/ja' // 追加
 import { Tooltip } from 'shared/elements/tooltips'
-import { aa } from '@fullcalendar/core/internal-common'
+// import { aa } from '@fullcalendar/core/internal-common'
 
 // import { ToolTip } from "shared/elements/tooltips";
 
