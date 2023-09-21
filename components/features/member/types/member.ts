@@ -9,6 +9,14 @@ export type Member = {
   number?: string
   thumbnail?: StorageObject
 
+  birthday? : string
+  foot? : string
+  footSize? : number
+  height? : number
+  weight? : number
+
+  bloodType? : string
+
   markdown?: string
 
   publish: boolean
