@@ -15,11 +15,11 @@ const Home: NextPage = () => {
 
   if (!members || !categories) return <></>
 
-  const FWMembers = [];
-  const MDMembers = [];
-  const DFMembers = [];
-  const GKMembers = [];
-  const otherMembers = [];
+  const FWMembers:Member[] = [];
+  const MDMembers:Member[] = [];
+  const DFMembers:Member[] = [];
+  const GKMembers:Member[] = [];
+  const otherMembers:Member[] = [];
   
   members.forEach((member:Member) => {
     if(!member || member === undefined) return otherMembers.push(member);
