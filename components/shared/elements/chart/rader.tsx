@@ -1,8 +1,7 @@
 import { Member } from 'member/types/member';
-import * as React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-//https://swamplabo.com/react-chart-libraries/
+// https://swamplabo.com/react-chart-libraries/
 
 function ApexChartRader(props: {member: Member}) {
 
