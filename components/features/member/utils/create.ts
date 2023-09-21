@@ -15,7 +15,13 @@ export const createMember = async () => {
     custom: {},
     insDate: Timestamp.fromDate(now),
     thumbnail: { name: 'noImage', url: '/img/member/member_default.jpg' },
-    tags: []
+    tags: [],
+    param1: 0,
+    param2: 0,
+    param3: 0,
+    param4: 0,
+    param5: 0,
+    param6: 0
   }
   const result = insert('member', newMember, newMember.id)
   return result ? newMember : null
