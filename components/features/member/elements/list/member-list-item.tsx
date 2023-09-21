@@ -71,24 +71,90 @@ export const MemberListItem = (props: { member: Member }) => {
                 </Word>
               </FlexBox>
               <FlexBox way={'row'} gap={'1em'} alignItems={'center'}>
-                <Word
-                  size={moduler(-2)}
-                  weight={'bold'}
-                  color={theme.color.gray03}
-                >
-                  公開日
-                </Word>
-                <FlexBox way={'row'} gap={'6px'} alignItems={'center'}>
-                  <MemberListStateMaker member={props.member} />
+                
+                <FlexBox way={'row'} width={'100px'}>
                   <Word
-                    size={moduler(-1.5)}
-                    weight={'500'}
-                    color={theme.color.main}
+                    size={moduler(-2)}
+                    weight={'bold'}
+                    color={theme.color.gray03}
                   >
-                    {getDateText(props.member.releaseDate.toDate())}{' '}
-                    {getTimeText(props.member.releaseDate.toDate())}
+                    ポジション
                   </Word>
+
+                  <FlexBox way={'row'} gap={'6px'}>{' '}</FlexBox>
+                  <FlexBox way={'row'} gap={'6px'} alignItems={'center'}>
+                    <Word
+                      size={moduler(-1.5)}
+                      weight={'500'}
+                      color={theme.color.main}
+                    >
+                      {props.member.position ?? ''}
+                    </Word>
+                  </FlexBox>
                 </FlexBox>
+
+                <FlexBox way={'row'} width={'100px'}>
+                  <Word
+                    size={moduler(-2)}
+                    weight={'bold'}
+                    color={theme.color.gray03}
+                  >
+                    背番号
+                  </Word>
+
+                  <FlexBox way={'row'} gap={'6px'}>{' '}</FlexBox>
+                  <FlexBox way={'row'} gap={'6px'} alignItems={'center'}>
+                    <Word
+                      size={moduler(-1.5)}
+                      weight={'500'}
+                      color={theme.color.main}
+                    >
+                      {props.member.number ?? ''}
+                    </Word>
+                  </FlexBox>
+                </FlexBox>
+
+                <FlexBox way={'row'}  width={'150px'}>
+                  <Word
+                    size={moduler(-2)}
+                    weight={'bold'}
+                    color={theme.color.gray03}
+                  >
+                    英語名
+                  </Word>
+                  <FlexBox way={'row'} gap={'6px'}>{' '}</FlexBox>
+                  <FlexBox way={'row'} gap={'6px'} alignItems={'center'}>
+                    <Word
+                      size={moduler(-1.5)}
+                      weight={'500'}
+                      color={theme.color.main}
+                    >
+                      {props.member.nameEnglish ?? '  '}
+                    </Word>
+                  </FlexBox>
+                </FlexBox>
+
+                <FlexBox way={'row'}>
+                  <Word
+                    size={moduler(-2)}
+                    weight={'bold'}
+                    color={theme.color.gray03}
+                  >
+                    公開日
+                  </Word>
+                  <FlexBox way={'row'} gap={'6px'} alignItems={'center'}>
+                    <MemberListStateMaker member={props.member} />
+                    <Word
+                      size={moduler(-1.5)}
+                      weight={'500'}
+                      color={theme.color.main}
+                    >
+                      {getDateText(props.member.releaseDate.toDate())}{' '}
+                      {getTimeText(props.member.releaseDate.toDate())}
+                    </Word>
+                  </FlexBox>
+                </FlexBox>
+
               </FlexBox>
             </FlexBox>
           </FlexBox>
