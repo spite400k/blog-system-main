@@ -22,7 +22,7 @@ export const Page = () => {
 
   return (
     <FramerBox>
-      <FlexBox width={'100%'} height={'100vh'} way={'column'}>
+      <FlexBox width={'100%'} height={'1000px'} way={'column'}>
         <MemberEditorHeader member={member[0]} />
         <FlexBox
           padding={'0 3em 0 3em'}

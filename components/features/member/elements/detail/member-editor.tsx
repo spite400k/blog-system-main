@@ -12,6 +12,7 @@ import { FlexBox } from 'shared/elements/box/flex'
 import { Word } from 'shared/elements/text/common'
 import { moduler } from 'shared/utils/styles'
 import { Input } from 'shared/elements/field/input'
+import ApexChartRader from 'shared/elements/chart/rader'
 
 export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
   const { isPreview, uploadInfo, onInsertImgMarkdown } = useMemberEditor()
@@ -48,7 +49,7 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
         borderWidth={'2px'}
         borderStyle={'solid'}
         radius={'12px'}
-        overflow={'hidden'}
+        // overflow={'hidden'}
       >
         <ColorBox
           width={'100%'}
@@ -122,41 +123,6 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
               </FlexBox>
             </ColorBox>
 
-            <ColorBox
-              background={theme.color.base}
-              width={'100%'}
-              padding={'1em'}
-              radius={'16px'}
-              shrink={'0'}
-              hover={{ background: theme.color.gray06 }}
-            >
-              <FlexBox way={'column'} width={'100%'} gap={'1em'}>
-                <TopField title={'選手名(英語)'}></TopField>
-                <BorderBox
-                  width={'100%'}
-                  height={'100%'}
-                  borderPosition={'bottom'}
-                  borderColor={theme.color.gray01}
-                  borderWidth={'2px'}
-                  borderStyle={'solid'}
-                  radius={'1px'}
-                  overflow={'hidden'}
-                >
-                  <TopField title={''}>
-                    <Input
-                      width={'100%'}
-                      padding={'1em 0.5em'}
-                      background={theme.color.base}
-                      border={{ radius: '6px' }}
-                      defaultValue={props.member.nameEnglish}
-                      onChange={(e) =>
-                        (props.member.nameEnglish = e.target.value)
-                      }
-                    />{' '}
-                  </TopField>
-                </BorderBox>
-              </FlexBox>
-            </ColorBox>
 
             <ColorBox
               background={theme.color.base}
@@ -257,6 +223,105 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
                   </TopField>
                 </BorderBox>
               </FlexBox>
+            </ColorBox>
+            <ColorBox
+              background={theme.color.base}
+              width={'100%'}
+              padding={'1em'}
+              radius={'16px'}
+              shrink={'0'}
+              hover={{ background: theme.color.gray06 }}
+            >
+              <FlexBox way={'column'} width={'100%'} gap={'1em'}>
+                <TopField title={'能力パラメータ'}></TopField>
+                <FlexBox way={'row'} width={'100%'} gap={'10em'}>
+                  <BorderBox
+                    width={'60%'}
+                    height={'100%'}
+                    borderPosition={'bottom'}
+                    borderColor={theme.color.gray01}
+                    borderWidth={'2px'}
+                    borderStyle={'solid'}
+                    radius={'1px'}
+                    overflow={'hidden'}
+                    >
+                    <TopField title={'　パラメータ１'}>
+                      <Input
+                        width={'50%'}
+                        padding={'1em 0.5em'}
+                        background={theme.color.base}
+                        border={{ radius: '6px' }}
+                        defaultValue={props.member.param1}
+                        onChange={(e) => (props.member.param1 = Number(e.target.value))}
+                        align={'right'}
+                      />{' '}
+                    </TopField>
+
+                    <TopField title={'　パラメータ２'}>
+                      <Input
+                        width={'50%'}
+                        padding={'1em 0.5em'}
+                        background={theme.color.base}
+                        border={{ radius: '6px' }}
+                        defaultValue={props.member.param2}
+                        onChange={(e) => (props.member.param2 = Number(e.target.value))}
+                        align={'right'}
+                      />{' '}
+                    </TopField>
+
+                    <TopField title={'　パラメータ３'}>
+                      <Input
+                        width={'50%'}
+                        padding={'1em 0.5em'}
+                        background={theme.color.base}
+                        border={{ radius: '6px' }}
+                        defaultValue={props.member.param3}
+                        onChange={(e) => (props.member.param3 = Number(e.target.value))}
+                        align={'right'}
+                      />{' '}
+                    </TopField>
+
+                    <TopField title={'　パラメータ４'}>
+                      <Input
+                        width={'50%'}
+                        padding={'1em 0.5em'}
+                        background={theme.color.base}
+                        border={{ radius: '6px' }}
+                        defaultValue={props.member.param4}
+                        onChange={(e) => (props.member.param4 = Number(e.target.value))}
+                        align={'right'}
+                      />{' '}
+                    </TopField>
+
+                    <TopField title={'　パラメータ５'}>
+                      <Input
+                        width={'50%'}
+                        padding={'1em 0.5em'}
+                        background={theme.color.base}
+                        border={{ radius: '6px' }}
+                        defaultValue={props.member.param5}
+                        onChange={(e) => (props.member.param5 = Number(e.target.value))}
+                        align={'right'}
+                      />{' '}
+                    </TopField>
+
+                    <TopField title={'　パラメータ６'}>
+                      <Input
+                        width={'50%'}
+                        padding={'1em 0.5em'}
+                        background={theme.color.base}
+                        border={{ radius: '6px' }}
+                        defaultValue={props.member.param6}
+                        onChange={(e) => (props.member.param6 = Number(e.target.value))}
+                        align={'right'}
+                      />{' '}
+                    </TopField>
+                  </BorderBox>
+
+                  <ApexChartRader member={props.member} />
+                </FlexBox>
+              </FlexBox>
+            
             </ColorBox>
           </ColorBox>
         </ColorBox>
