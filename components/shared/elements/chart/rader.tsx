@@ -1,5 +1,8 @@
+import dynamic from 'next/dynamic';
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 import { Member } from 'member/types/member';
-import ReactApexChart from 'react-apexcharts';
 
 // https://swamplabo.com/react-chart-libraries/
 

@@ -114,25 +114,6 @@ export const MemberListItem = (props: { member: Member }) => {
                   </FlexBox>
                 </FlexBox>
 
-                <FlexBox way={'row'}  width={'150px'}>
-                  <Word
-                    size={moduler(-2)}
-                    weight={'bold'}
-                    color={theme.color.gray03}
-                  >
-                    英語名
-                  </Word>
-                  <FlexBox way={'row'} gap={'6px'}>{' '}</FlexBox>
-                  <FlexBox way={'row'} gap={'6px'} alignItems={'center'}>
-                    <Word
-                      size={moduler(-1.5)}
-                      weight={'500'}
-                      color={theme.color.main}
-                    >
-                      {props.member.nameEnglish ?? '  '}
-                    </Word>
-                  </FlexBox>
-                </FlexBox>
 
                 <FlexBox way={'row'}>
                   <Word
