@@ -15,15 +15,15 @@ const Home: NextPage = () => {
 
   if (!members || !categories) return <></>
 
-  let FWMembers = new Array();
-  let MDMembers = new Array();
-  let DFMembers = new Array();
-  let GKMembers = new Array();
-  let otherMembers = new Array();
+  const FWMembers = [];
+  const MDMembers = [];
+  const DFMembers = [];
+  const GKMembers = [];
+  const otherMembers = [];
   
   members.forEach((member:Member) => {
-    if(!member || member == undefined) return otherMembers.push(member);
-    if(!member.position || member.position == undefined) return otherMembers.push(member);
+    if(!member || member === undefined) return otherMembers.push(member);
+    if(!member.position || member.position === undefined) return otherMembers.push(member);
 
     if(member.position.includes('FW')) return FWMembers.push(member);
     if(member.position.includes('DF')) return DFMembers.push(member);
