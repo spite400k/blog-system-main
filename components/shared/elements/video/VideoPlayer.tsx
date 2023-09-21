@@ -26,7 +26,6 @@ function VideoPlayer (props : videojs.PlayerOptions) {
   return (
     <div className="c-player" >
       <div className="c-player__screen" data-vjs-player="true" data-setup='{}'>
-        /* eslint-disable-next-line jsx-a11y/media-has-caption */
         <video
           id={videoNodeId}
           className="video-js"
