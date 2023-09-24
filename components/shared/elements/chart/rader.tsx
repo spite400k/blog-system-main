@@ -1,12 +1,12 @@
-import { Member } from 'member/types/member';
 import dynamic from 'next/dynamic';
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
+import { MemberType } from '@/types/member';
 
 // https://swamplabo.com/react-chart-libraries/
 
-function ApexChartRader(props: {member: Member}) {
+function ApexChartRader(props: {member: MemberType}) {
 
   const series = [
     {
@@ -25,12 +25,25 @@ function ApexChartRader(props: {member: Member}) {
       id: 'simple-rader',
     },
     xaxis: {
-      categories: ['パラメータ1', 'パラメータ2', 'パラメータ3', 'パラメータ4', 'パラメータ5', 'パラメータ6'],
+      categories: ['Tactics', 'Kick', 'Dribble', 'Ball Control', 'Physical', 'Carrer'],
     },
-    colors: ['#606DC2'],
+    colors: ['#FF4560'],
+    dataLabels: {
+      enabled: true
+    },
+    radar: {
+      size: 300,
+      polygons: {
+        strokeColors: '#e9e9e9',
+        fill: {
+          colors: ['#f8f8f8', '#fff']
+        }
+      }
+    },
+    
   };
 
-  return <ReactApexChart options={options} type="radar" series={series} width={'150%'}/>;
+  return <ReactApexChart options={options} type="radar" series={series} width={'130%'} height={350}/>;
 }
 
 export default ApexChartRader;

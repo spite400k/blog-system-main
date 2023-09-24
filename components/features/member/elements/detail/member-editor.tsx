@@ -452,7 +452,7 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
                     radius={'1px'}
                     overflow={'hidden'}
                     >
-                    <TopField title={'　パラメータ１'}>
+                    <TopField title={'　Tactics'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -464,7 +464,7 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
                       />{' '}
                     </TopField>
 
-                    <TopField title={'　パラメータ２'}>
+                    <TopField title={'　Kick'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -476,7 +476,7 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
                       />{' '}
                     </TopField>
 
-                    <TopField title={'　パラメータ３'}>
+                    <TopField title={'　Dribble'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -488,7 +488,7 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
                       />{' '}
                     </TopField>
 
-                    <TopField title={'　パラメータ４'}>
+                    <TopField title={'　Ball control'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -500,7 +500,7 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
                       />{' '}
                     </TopField>
 
-                    <TopField title={'　パラメータ５'}>
+                    <TopField title={'　Physical'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -512,7 +512,7 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
                       />{' '}
                     </TopField>
 
-                    <TopField title={'　パラメータ６'}>
+                    <TopField title={'　Carrer'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
