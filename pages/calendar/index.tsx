@@ -13,6 +13,11 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 // 日本語対応のためのインポート
 import jaLocale from '@fullcalendar/core/locales/ja' // 追加
 import { Tooltip } from 'shared/elements/tooltips'
+import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useCallback } from 'react'
+import { EventClickArg } from '@fullcalendar/core'
+import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
+import { getDateText, getDateTextNullable } from 'shared/utils/date'
+
 // import { aa } from '@fullcalendar/core/internal-common'
 
 // import { ToolTip } from "shared/elements/tooltips";
@@ -65,6 +70,43 @@ const Home: NextPage = () => {
   //   </Tooltip>
   // )
 
+  const handleDateClick = useCallback((arg: DateClickArg) => {
+		// alert(arg.dateStr);
+    // alert('Clicked on: ' + arg.dateStr);
+    // alert('Coordinates: ' + arg.jsEvent.pageX + ',' + arg.jsEvent.pageY);
+    // alert('Current view: ' + arg.view.title);
+    // change the day's background color just for fun
+    // arg.dayEl.style.backgroundColor = 'red' ? arg.dayEl.style.backgroundColor = 'grey' : arg.dayEl.style.backgroundColor = 'red';
+    // arg.dayEl.style.backgroundColor = 'red'
+  }, [])
+
+  const handleEventClick = useCallback((arg: EventClickArg) => {
+    const start = getDateTextNullable(arg.event.start);
+    const end = getDateTextNullable(arg.event.end);
+    // alert('Event: ' + arg.event.title + start + end);
+    // alert('Coordinates: ' + arg.jsEvent.pageX + ',' + arg.jsEvent.pageY);
+    // alert('View: ' + arg.view.type);
+
+    // change the border color just for fun
+    // arg.el.style.borderColor = 'red';  
+    // arg.el.style.backgroundColor = 'red'
+
+    // return (
+    //   <Tooltip message={arg.event.title}>
+    //     <div>{arg.event.title}</div>
+    //   </Tooltip>
+    // )
+  }, [])
+
+  function renderEventContent(eventInfo: { timeText: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; event: { title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined } }) {
+    return (
+      <>
+        <b>{eventInfo.timeText}</b>
+        <i>{eventInfo.event.title}</i>
+      </>
+    )
+  }
+
   return (
     <FramerBox>
       <TayoriTemplate>
@@ -87,9 +129,12 @@ const Home: NextPage = () => {
 
             <Box width={'70%'} overflowY={'scroll'}>
               <FullCalendar
-                plugins={[dayGridPlugin]}
+              eventContent={renderEventContent}
+                plugins={[dayGridPlugin,interactionPlugin]}
                 initialView="dayGridMonth"
                 events={calendarList}
+                eventColor={'#378006'}
+                eventDisplay={'block'}
                 locales={[jaLocale]}
                 locale="ja"
                 headerToolbar={{
@@ -103,23 +148,27 @@ const Home: NextPage = () => {
                 expandRows={true}
                 aspectRatio={1.0}
                 // dateClick={handleDateClick}
-                eventClick={(e) => {
-                  //   alert('Event: ' + info.event.title + '¥r¥n'+'Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY + '¥r¥n'+'View: ' + info.view.type);
+                dateClick={handleDateClick}
+                selectable={true}
+                unselectAuto={true}
+                // eventClick={(e) => {
+                //   //   alert('Event: ' + info.event.title + '¥r¥n'+'Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY + '¥r¥n'+'View: ' + info.view.type);
 
-                  //   // change the border color just for fun
-                  //   info.el.style.borderColor = 'red';
-                  //   return(
-                  //     <>aaa</>
-                  //   )
-                  // }
-                  // console.log(e)
-                  return (
-                    <Tooltip message={'ツールチップ'}>
-                      <h1>e</h1>
-                      <h1>e.el.extendedProps.description</h1>
-                    </Tooltip>
-                  )
-                }}
+                //   //   // change the border color just for fun
+                //   //   info.el.style.borderColor = 'red';
+                //   //   return(
+                //   //     <>aaa</>
+                //   //   )
+                //   // }
+                //   // console.log(e)
+                //   return (
+                //     <Tooltip message={'ツールチップ'}>
+                //       <h1>e</h1>
+                //       <h1>e.el.extendedProps.description</h1>
+                //     </Tooltip>
+                //   )
+                // }}
+                eventClick={handleEventClick}
                 // eventDidMount={(e) => {
                 //   console.log(e)
                 //   return (
@@ -130,6 +179,7 @@ const Home: NextPage = () => {
                 //   )
                 // }}
                 // eventContent={(arg) => EventComponent(arg)}
+                
               />
             </Box>
           </FlexBox>

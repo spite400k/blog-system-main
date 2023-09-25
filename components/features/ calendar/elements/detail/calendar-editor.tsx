@@ -153,7 +153,7 @@ export const CalendarEditor = (props: { calendar: CalendarType; isPreview: boole
                         <Calendar
                           date={start}
                           onChange={(d) => setStart(d)}
-                          isUseTime={false}
+                          isUseTime={true}
 
                         />
                       </TransformBox>
@@ -205,7 +205,7 @@ export const CalendarEditor = (props: { calendar: CalendarType; isPreview: boole
                         <Calendar
                           date={end}
                           onChange={(d) => setEnd(d)}
-                          isUseTime={false}
+                          isUseTime={true}
                         />
                       </TransformBox>
                     </ColorBox>

@@ -31,6 +31,25 @@ export const getTimeText = (date: Date) => {
     2
   )}`
 }
+
+export const getDateTextNullable = (date: Date | null) => {
+
+  if(date===null) return;
+  return `${date.getFullYear()}-${zeroPadding(
+    date.getMonth() + 1,
+    2
+  )}-${zeroPadding(date.getDate(), 2)}`
+}
+
+export const getTimeTextNullable = (date: Date| null) => {
+  if(date===null) return;
+  return `${zeroPadding(date.getHours(), 2)}:${zeroPadding(
+    date.getMinutes(),
+    2
+  )}`
+}
+
+
 export const getTimestampText = (date: Date) => {
   return `${zeroPadding(date.getHours(), 2)}${zeroPadding(
     date.getMinutes(),
