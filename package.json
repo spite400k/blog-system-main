@@ -9,10 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fullcalendar/core": "^6.1.8",
-    "@fullcalendar/daygrid": "^6.1.8",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fullcalendar/core": "^6.1.9",
+    "@fullcalendar/daygrid": "^6.1.9",
+    "@fullcalendar/interaction": "^6.1.9",
     "@fullcalendar/react": "^6.1.8",
     "@google-cloud/storage": "^6.2.2",
+    "@mui/material": "^5.14.10",
     "@slack/web-api": "^6.7.2",
     "@tippyjs/react": "^4.2.6",
     "apexcharts": "^3.42.0",

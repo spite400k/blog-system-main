@@ -12,11 +12,13 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 // 日本語対応のためのインポート
 import jaLocale from '@fullcalendar/core/locales/ja' // 追加
-import { Tooltip } from 'shared/elements/tooltips'
+// import { Tooltip } from 'shared/elements/tooltips'
 import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useCallback } from 'react'
-import { EventClickArg } from '@fullcalendar/core'
+import { EventClickArg, EventContentArg } from '@fullcalendar/core'
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { getDateText, getDateTextNullable } from 'shared/utils/date'
+import Tooltip from '@mui/material/Tooltip'
+import { List, ListItem, Stack, Typography } from '@mui/material'
 
 // import { aa } from '@fullcalendar/core/internal-common'
 
@@ -98,14 +100,56 @@ const Home: NextPage = () => {
     // )
   }, [])
 
-  function renderEventContent(eventInfo: { timeText: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; event: { title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined } }) {
+  // function renderEventContent(eventInfo: { timeText: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; event: { title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined } }) {
+  //   return (
+  //     <>
+  //       <b>{eventInfo.timeText}</b>
+  //       <i>{eventInfo.event.title}</i>
+  //       {/* <Tooltip message={'EVENT'}>
+  //         <div>EVEBT1111</div>
+  //       </Tooltip> */}
+  //     </>
+  //   )
+  // }
+
+  const EventComponent = (arg: EventContentArg) => (
+		// <Tooltip
+		// 	message={arg.event.extendedProps.description} //イベントの中身
+		// 	aria-label="tooltip"
+		// 	// placement="top-start"
+		// 	// hasArrow
+		// 	// arrowSize={5}
+		// >
+		// 	<div>{arg.event.title}</div>
+		// </Tooltip>
+    <Tooltip
+      arrow
+      placement="right"
+      title={<CustomToolTip name={arg.event.extendedProps.description} />}>
+      <div
+        style={{
+          height: '100%',
+          width: '100%',
+        }}>
+        <b>{arg.timeText}</b>
+        <i>{arg.event.title}</i>
+      </div>
+    </Tooltip>
+	);
+
+  const CustomToolTip = ({ name }: any): ReactElement => {
     return (
-      <>
-        <b>{eventInfo.timeText}</b>
-        <i>{eventInfo.event.title}</i>
-      </>
-    )
-  }
+      <Stack>
+        <Typography variant="body1">{name}</Typography>
+        <List>
+          <ListItem>Category 1</ListItem>
+          <ListItem>Category 2</ListItem>
+          <ListItem>Category 3</ListItem>
+          <ListItem>Category 4</ListItem>
+        </List>
+      </Stack>
+    );
+  };
 
   return (
     <FramerBox>
@@ -129,7 +173,7 @@ const Home: NextPage = () => {
 
             <Box width={'70%'} overflowY={'scroll'}>
               <FullCalendar
-              eventContent={renderEventContent}
+
                 plugins={[dayGridPlugin,interactionPlugin]}
                 initialView="dayGridMonth"
                 events={calendarList}
@@ -179,7 +223,8 @@ const Home: NextPage = () => {
                 //   )
                 // }}
                 // eventContent={(arg) => EventComponent(arg)}
-                
+                // eventContent={renderEventContent}
+                eventContent={(arg: EventContentArg) => EventComponent(arg)}
               />
             </Box>
           </FlexBox>
