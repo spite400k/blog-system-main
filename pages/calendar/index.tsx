@@ -14,7 +14,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import jaLocale from '@fullcalendar/core/locales/ja' 
 import { ReactElement} from 'react'
 import { EventContentArg } from '@fullcalendar/core'
-import interactionPlugin　from '@fullcalendar/interaction';
+import interactionPlugin from '@fullcalendar/interaction';
 import { getDateTextNullable } from 'shared/utils/date'
 import Tooltip from '@mui/material/Tooltip'
 import { Button, Stack, Typography } from '@mui/material'
