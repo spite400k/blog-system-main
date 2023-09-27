@@ -66,66 +66,17 @@ const Home: NextPage = () => {
     }
   })
 
-  // const EventComponent = (arg: aa) => (
-  //   <Tooltip message={arg.event.title}>
-  //     <div>{arg.event.title}</div>
-  //   </Tooltip>
-  // )
-
-  const handleDateClick = useCallback((arg: DateClickArg) => {
-		// alert(arg.dateStr);
-    // alert('Clicked on: ' + arg.dateStr);
-    // alert('Coordinates: ' + arg.jsEvent.pageX + ',' + arg.jsEvent.pageY);
-    // alert('Current view: ' + arg.view.title);
-    // change the day's background color just for fun
-    // arg.dayEl.style.backgroundColor = 'red' ? arg.dayEl.style.backgroundColor = 'grey' : arg.dayEl.style.backgroundColor = 'red';
-    // arg.dayEl.style.backgroundColor = 'red'
-  }, [])
-
-  const handleEventClick = useCallback((arg: EventClickArg) => {
-    const start = getDateTextNullable(arg.event.start);
-    const end = getDateTextNullable(arg.event.end);
-    // alert('Event: ' + arg.event.title + start + end);
-    // alert('Coordinates: ' + arg.jsEvent.pageX + ',' + arg.jsEvent.pageY);
-    // alert('View: ' + arg.view.type);
-
-    // change the border color just for fun
-    // arg.el.style.borderColor = 'red';  
-    // arg.el.style.backgroundColor = 'red'
-
-    // return (
-    //   <Tooltip message={arg.event.title}>
-    //     <div>{arg.event.title}</div>
-    //   </Tooltip>
-    // )
-  }, [])
-
-  // function renderEventContent(eventInfo: { timeText: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; event: { title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined } }) {
-  //   return (
-  //     <>
-  //       <b>{eventInfo.timeText}</b>
-  //       <i>{eventInfo.event.title}</i>
-  //       {/* <Tooltip message={'EVENT'}>
-  //         <div>EVEBT1111</div>
-  //       </Tooltip> */}
-  //     </>
-  //   )
-  // }
-
   const EventComponent = (arg: EventContentArg) => (
-		// <Tooltip
-		// 	message={arg.event.extendedProps.description} //イベントの中身
-		// 	aria-label="tooltip"
-		// 	// placement="top-start"
-		// 	// hasArrow
-		// 	// arrowSize={5}
-		// >
-		// 	<div>{arg.event.title}</div>
-		// </Tooltip>
+
     <Tooltip
       arrow
       placement="right"
-      title={<CustomToolTip name={arg.event.extendedProps.description} />}>
+      title={
+          <CustomToolTip 
+          timeText={arg.timeText}
+          event={arg.event} />
+        }
+      >
       <div
         style={{
           height: '100%',
@@ -137,16 +88,15 @@ const Home: NextPage = () => {
     </Tooltip>
 	);
 
-  const CustomToolTip = ({ name }: any): ReactElement => {
+  const CustomToolTip = ({timeText, event} :{timeText:string, event:EventContentArg["event"]}): ReactElement => {
+    console.log(event);
+    const start = getDateTextNullable(event.start);
+    const end = getDateTextNullable(event.end);
     return (
       <Stack>
-        <Typography variant="body1">{name}</Typography>
-        <List>
-          <ListItem>Category 1</ListItem>
-          <ListItem>Category 2</ListItem>
-          <ListItem>Category 3</ListItem>
-          <ListItem>Category 4</ListItem>
-        </List>
+        <Typography variant="subtitle1">{event.title}</Typography>
+        <div>{timeText}</div>
+        <div>{start}-{end}</div>
       </Stack>
     );
   };
@@ -191,39 +141,8 @@ const Home: NextPage = () => {
                 dayMaxEventRows={2}
                 expandRows={true}
                 aspectRatio={1.0}
-                // dateClick={handleDateClick}
-                dateClick={handleDateClick}
                 selectable={true}
                 unselectAuto={true}
-                // eventClick={(e) => {
-                //   //   alert('Event: ' + info.event.title + '¥r¥n'+'Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY + '¥r¥n'+'View: ' + info.view.type);
-
-                //   //   // change the border color just for fun
-                //   //   info.el.style.borderColor = 'red';
-                //   //   return(
-                //   //     <>aaa</>
-                //   //   )
-                //   // }
-                //   // console.log(e)
-                //   return (
-                //     <Tooltip message={'ツールチップ'}>
-                //       <h1>e</h1>
-                //       <h1>e.el.extendedProps.description</h1>
-                //     </Tooltip>
-                //   )
-                // }}
-                eventClick={handleEventClick}
-                // eventDidMount={(e) => {
-                //   console.log(e)
-                //   return (
-                //     <Tooltip label="Tooltip text">
-                //       <h1>e.event.title</h1>
-                //       <h1>e.el.extendedProps.description</h1>
-                //     </Tooltip>
-                //   )
-                // }}
-                // eventContent={(arg) => EventComponent(arg)}
-                // eventContent={renderEventContent}
                 eventContent={(arg: EventContentArg) => EventComponent(arg)}
               />
             </Box>
