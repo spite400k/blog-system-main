@@ -18,11 +18,9 @@ import { EventClickArg, EventContentArg } from '@fullcalendar/core'
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { getDateText, getDateTextNullable } from 'shared/utils/date'
 import Tooltip from '@mui/material/Tooltip'
-import { List, ListItem, Stack, Typography } from '@mui/material'
+import { Button, List, ListItem, Stack, Typography } from '@mui/material'
 
-// import { aa } from '@fullcalendar/core/internal-common'
-
-// import { ToolTip } from "shared/elements/tooltips";
+import { Link } from 'shared/elements/link/Link'
 
 const Home: NextPage = () => {
   const { data: calendars } = useFireStore<CalendarType>('tbl_calendar')
@@ -89,14 +87,22 @@ const Home: NextPage = () => {
 	);
 
   const CustomToolTip = ({timeText, event} :{timeText:string, event:EventContentArg["event"]}): ReactElement => {
-    console.log(event);
     const start = getDateTextNullable(event.start);
     const end = getDateTextNullable(event.end);
     return (
       <Stack>
         <Typography variant="subtitle1">{event.title}</Typography>
+        {
+          start === end ? (
+            <div>{start}</div>
+
+          ):(
+            <div>{start}-{end}</div>
+
+          )
+        }
         <div>{timeText}</div>
-        <div>{start}-{end}</div>
+        <Link href={`/calendar/${event.id}`}><Button variant="contained" >編集</Button></Link>
       </Stack>
     );
   };
