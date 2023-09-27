@@ -11,14 +11,13 @@ import FullCalendar from '@fullcalendar/react'
 // FullCalendarで月表示を可能にするプラグイン。
 import dayGridPlugin from '@fullcalendar/daygrid'
 // 日本語対応のためのインポート
-import jaLocale from '@fullcalendar/core/locales/ja' // 追加
-// import { Tooltip } from 'shared/elements/tooltips'
-import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useCallback } from 'react'
-import { EventClickArg, EventContentArg } from '@fullcalendar/core'
-import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
-import { getDateText, getDateTextNullable } from 'shared/utils/date'
+import jaLocale from '@fullcalendar/core/locales/ja' 
+import { ReactElement} from 'react'
+import { EventContentArg } from '@fullcalendar/core'
+import interactionPlugin　from '@fullcalendar/interaction';
+import { getDateTextNullable } from 'shared/utils/date'
 import Tooltip from '@mui/material/Tooltip'
-import { Button, List, ListItem, Stack, Typography } from '@mui/material'
+import { Button, Stack, Typography } from '@mui/material'
 
 import { Link } from 'shared/elements/link/Link'
 
