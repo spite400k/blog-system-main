@@ -1,4 +1,4 @@
-import { Member } from '../../types/member'
+import { MemberType } from '../../types/member'
 import { useEffect, useState, ReactNode } from 'react'
 import { ColorBox } from 'shared/elements/box/color'
 import { FlexBox } from 'shared/elements/box/flex'

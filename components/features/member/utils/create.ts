@@ -1,11 +1,11 @@
 import { Timestamp } from 'firebase/firestore'
 import { insert } from 'firestore/utils/insert'
-import { Member } from '../types/member'
+import { MemberType } from '../types/member'
 import { getDateTimeText } from 'shared/utils/date'
 
 export const createMember = async () => {
   const now = new Date()
-  const newMember: Member = {
+  const newMember: MemberType = {
     id: getDateTimeText(now),
     name: '新しい選手',
     publish: false,

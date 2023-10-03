@@ -1,4 +1,4 @@
-import { Member } from '../types/member'
+import { MemberType } from '../types/member'
 import { MemberScheduleRequest } from '../types/schedule'
 
 export const schedule = async (member: Member) => {

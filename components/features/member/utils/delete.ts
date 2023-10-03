@@ -1,5 +1,5 @@
 import { remove } from 'firestore/utils/remove'
-import { Member } from '../types/member'
+import { MemberType } from '../types/member'
 
 export const deleteMember = async (member: Member) => {
   const result = await remove('member', member.id)

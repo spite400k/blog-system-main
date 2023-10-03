@@ -1,4 +1,4 @@
-import { Member } from '../../types/member'
+import { MemberType } from '../../types/member'
 import { ColorBox } from 'shared/elements/box/color'
 import { Box } from 'shared/elements/box/common'
 import { FlexBox } from 'shared/elements/box/flex'
@@ -17,7 +17,7 @@ import { messageList } from '../../utils/message'
 import { errorList } from '../../utils/error'
 import { refresh, schedule } from '../../utils/schedule'
 
-export const MemberEditorHeader = (props: { member: Member }) => {
+export const MemberEditorHeader = (props: { member: MemberType }) => {
   const { theme } = useTheme()
   const notifier = useNotification()
   const router = useRouter()

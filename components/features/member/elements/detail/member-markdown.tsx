@@ -2,7 +2,7 @@ import ReactMarkdown from 'react-markdown'
 import CodeBlock from './CodeBlock'
 import MdImage from './MdImage'
 
-import { Member } from '../../types/member'
+import { MemberType } from '../../types/member'
 import matter from 'gray-matter'
 
 export const MemberMarkdown = (props: { member: Member }) => {

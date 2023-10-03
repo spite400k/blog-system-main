@@ -1,10 +1,10 @@
 import { Notification } from 'components/notification/types/notification'
-import { Member } from '../types/member'
+import { MemberType } from '../types/member'
 import { MemberSlug } from '../types/slug'
 import { errorList } from './error'
 
 export const validateMember = async (
-  p: Member,
+  p: MemberType,
   onSuccess?: (slugs: MemberSlug) => void
 ): Promise<Notification | null> => {
   // empty name

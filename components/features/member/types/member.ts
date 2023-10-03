@@ -1,7 +1,7 @@
 import { StorageObject } from 'components/storage/types/obj'
 import { Timestamp } from 'firebase/firestore'
 
-export type Member = {
+export type MemberType = {
   id: string
   name?: string
   nameEnglish?: string
@@ -14,6 +14,8 @@ export type Member = {
   footSize? : number
   height? : number
   weight? : number
+
+  playerExplain ? : string
 
   bloodType? : string
 

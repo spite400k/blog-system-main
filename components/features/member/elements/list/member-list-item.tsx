@@ -1,4 +1,4 @@
-import { Member } from '../../types/member'
+import { MemberType } from '../../types/member'
 import { BorderBox } from 'shared/elements/box/border'
 import { ColorBox } from 'shared/elements/box/color'
 import { Box } from 'shared/elements/box/common'

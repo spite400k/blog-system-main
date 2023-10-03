@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { MemberEditor } from 'member/elements/detail/member-editor'
 import { MemberEditorHeader } from 'member/elements/detail/member-editor-header'
 import { MemberEditorSidebar } from 'member/elements/detail/member-editor-sidebar'
-import { Member } from 'member/types/member'
+import { MemberType } from 'member/types/member'
 import { useState } from 'react'
 import { Box } from 'shared/elements/box/common'
 import { FlexBox } from 'shared/elements/box/flex'
@@ -14,7 +14,7 @@ export const Page = () => {
   const router = useRouter()
   const { id } = router.query
   const [isPreview, setPreviewMode] = useState(false)
-  const { data: member } = useFireStore<Member>('member', id as string)
+  const { data: member } = useFireStore<MemberType>('member', id as string)
   const { data: categories } = useFireStore<Category>('category')
 
   if (!member || !categories) return <></>

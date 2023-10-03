@@ -1,4 +1,4 @@
-import { Member } from '../../types/member'
+import { MemberType } from '../../types/member'
 import { BorderBox } from 'shared/elements/box/border'
 import { ColorBox } from 'shared/elements/box/color'
 import { useTheme } from 'shared/hooks/useTheme'
@@ -14,7 +14,7 @@ import { moduler } from 'shared/utils/styles'
 import { Input } from 'shared/elements/field/input'
 import ApexChartRader from 'shared/elements/chart/rader'
 
-export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
+export const MemberEditor = (props: { member: MemberType; isPreview: boolean }) => {
   const { isPreview, uploadInfo, onInsertImgMarkdown } = useMemberEditor()
   const { theme } = useTheme()
   const areaLeavePos = useRef(
@@ -424,8 +424,8 @@ export const MemberEditor = (props: { member: Member; isPreview: boolean }) => {
                       padding={'1em 0.5em'}
                       background={theme.color.base}
                       border={{ radius: '6px' }}
-                      defaultValue={props.member.markdown}
-                      onChange={(e) => (props.member.markdown = e.target.value)}
+                      defaultValue={props.member.playerExplain}
+                      onChange={(e) => (props.member.playerExplain = e.target.value)}
                     />{' '}
                   </TopField>
                 </BorderBox>

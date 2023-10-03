@@ -1,4 +1,4 @@
-import { Member } from 'member/types/member';
+import { MemberType } from 'member/types/member';
 import dynamic from 'next/dynamic';
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -6,7 +6,7 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 
 // https://swamplabo.com/react-chart-libraries/
 
-function ApexChartRader(props: {member: Member}) {
+function ApexChartRader(props: {member: MemberType}) {
 
   const series = [
     {

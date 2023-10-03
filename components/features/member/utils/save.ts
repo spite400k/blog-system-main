@@ -1,5 +1,5 @@
 import { update } from 'firestore/utils/update'
-import { Member } from '../types/member'
+import { MemberType } from '../types/member'
 import { errorList } from './error'
 import { validateMember } from './validate'
 

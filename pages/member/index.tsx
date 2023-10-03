@@ -5,23 +5,23 @@ import { MemberListItem } from 'member/elements/list/member-list-item'
 import { Box } from 'shared/elements/box/common'
 import { FlexBox } from 'shared/elements/box/flex'
 import { useFireStore } from 'firestore/hooks/useFirestore'
-import { Member } from 'member/types/member'
+import { MemberType } from 'member/types/member'
 import { Category } from 'category/types/category'
 import { FramerBox } from 'shared/elements/box/framer' 
 
 const Home: NextPage = () => {
-  const { data: members } = useFireStore<Member>('member')
+  const { data: MemberType s } = useFireStore<Member>('member')
   const { data: categories } = useFireStore<Category>('category')
 
   if (!members || !categories) return <></>
 
-  const FWMembers:Member[] = [];
-  const MDMembers:Member[] = [];
-  const DFMembers:Member[] = [];
-  const GKMembers:Member[] = [];
-  const otherMembers:Member[] = [];
+  const FWMembers:MemberType[] = [];
+  const MDMembers:MemberType[] = [];
+  const DFMembers:MemberType[] = [];
+  const GKMembers:MemberType[] = [];
+  const otherMembers:MemberType[] = [];
   
-  members.forEach((member:Member) => {
+  members.forEach((member:MemberType) => {
     if(!member || member === undefined) return otherMembers.push(member);
     if(!member.position || member.position === undefined) return otherMembers.push(member);
 
@@ -63,7 +63,7 @@ const Home: NextPage = () => {
                 wrap={'wrap'}
                 padding={'2em 0'}
               >FW
-                {FWMembers.map((p: Member) => (
+                {FWMembers.map((p: MemberType ) => (
                   <MemberListItem key={p.id} member={p} />
                 ))}
               </FlexBox>
@@ -82,7 +82,7 @@ const Home: NextPage = () => {
                 wrap={'wrap'}
                 padding={'2em 0'}
               >MD
-                {MDMembers.map((p: Member) => (
+                {MDMembers.map((p: MemberType ) => (
                   <MemberListItem key={p.id} member={p} />
                 ))}
               </FlexBox>
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
                 wrap={'wrap'}
                 padding={'2em 0'}
               >DF
-                {DFMembers.map((p: Member) => (
+                {DFMembers.map((p: MemberType ) => (
                   <MemberListItem key={p.id} member={p} />
                 ))}
               </FlexBox>
@@ -120,7 +120,7 @@ const Home: NextPage = () => {
                 wrap={'wrap'}
                 padding={'2em 0'}
               >GK
-                {GKMembers.map((p: Member) => (
+                {GKMembers.map((p: MemberType ) => (
                   <MemberListItem key={p.id} member={p} />
                 ))}
               </FlexBox>
@@ -139,7 +139,7 @@ const Home: NextPage = () => {
                 wrap={'wrap'}
                 padding={'2em 0'}
               >その他
-                {otherMembers.map((p: Member) => (
+                {otherMembers.map((p: MemberType ) => (
                   <MemberListItem key={p.id} member={p} />
                 ))}
               </FlexBox>
