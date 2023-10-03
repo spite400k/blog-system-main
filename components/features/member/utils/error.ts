@@ -26,6 +26,13 @@ export const errorList = {
     message: 'ポジションを1つ設定してください。',
     type: 'failed'
   },
+
+  param_is_over: <Notification>{
+    emoji: '😵',
+    code: 'param_is_over',
+    message: 'レーダーチャートの値は0から5で設定してください',
+    type: 'failed'
+  },
   update_failed: <Notification>{
     emoji: '😵',
     code: 'member_update_failed',

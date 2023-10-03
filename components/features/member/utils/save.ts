@@ -3,7 +3,7 @@ import { MemberType } from '../types/member'
 import { errorList } from './error'
 import { validateMember } from './validate'
 
-export const saveMember = async (member: Member) => {
+export const saveMember = async (member: MemberType) => {
   if (process.env.NODE_ENV === 'development') console.log(member)
 
   // check validate
@@ -13,7 +13,7 @@ export const saveMember = async (member: Member) => {
   }
 
   // update member
-  const result = await update<Member>('member', member.id, member)
+  const result = await update<MemberType>('member', member.id, member)
 
   return result ? null : errorList.update_failed
 }

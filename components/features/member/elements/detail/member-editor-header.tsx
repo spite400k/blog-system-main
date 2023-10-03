@@ -80,7 +80,7 @@ export const MemberEditorHeader = (props: { member: MemberType }) => {
                 )
                 await schedule(props.member)
               } else {
-                notifier.show(errorList.update_failed)
+                notifier.show(error ?? errorList.update_failed)
               }
             }}
           >

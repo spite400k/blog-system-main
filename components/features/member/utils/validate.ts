@@ -34,6 +34,11 @@ export const validateMember = async (
   // //   return errorList.same_slug_exist
   // // }
 
+    // empty number
+  if (p.param1 === null || p.param1 === undefined || p.param1 > 5 || p.param1 < 0 || !Number.isInteger(p.param1)) {
+    return errorList.param_is_over
+  }
+
   // // after validate, update slugs for validation
   // await updateMemberSlugs(p, oldMember, slugs)
 

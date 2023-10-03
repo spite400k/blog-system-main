@@ -236,40 +236,6 @@ export const MemberEditor = (props: { member: MemberType; isPreview: boolean }) 
               hover={{ background: theme.color.gray06 }}
             >
               <FlexBox way={'column'} width={'100%'} gap={'1em'}>
-                <TopField title={'足のサイズ'}></TopField>
-                <BorderBox
-                  width={'100%'}
-                  height={'100%'}
-                  borderPosition={'bottom'}
-                  borderColor={theme.color.gray01}
-                  borderWidth={'2px'}
-                  borderStyle={'solid'}
-                  radius={'1px'}
-                  overflow={'hidden'}
-                >
-                  <TopField title={''}>
-                    <Input
-                      width={'100%'}
-                      padding={'1em 0.5em'}
-                      background={theme.color.base}
-                      border={{ radius: '6px' }}
-                      defaultValue={props.member.footSize}
-                      onChange={(e) => (props.member.footSize = Number(e.target.value))}
-                    />{' '}
-                  </TopField>
-                </BorderBox>
-              </FlexBox>
-            </ColorBox>
-
-            <ColorBox
-              background={theme.color.base}
-              width={'100%'}
-              padding={'1em'}
-              radius={'16px'}
-              shrink={'0'}
-              hover={{ background: theme.color.gray06 }}
-            >
-              <FlexBox way={'column'} width={'100%'} gap={'1em'}>
                 <TopField title={'身長'}></TopField>
                 <BorderBox
                   width={'100%'}
