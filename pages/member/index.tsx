@@ -10,7 +10,7 @@ import { Category } from 'category/types/category'
 import { FramerBox } from 'shared/elements/box/framer' 
 
 const Home: NextPage = () => {
-  const { data: MemberType s } = useFireStore<Member>('member')
+  const { data: members } = useFireStore<MemberType>('member')
   const { data: categories } = useFireStore<Category>('category')
 
   if (!members || !categories) return <></>
