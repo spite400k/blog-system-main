@@ -1,7 +1,7 @@
 import { MemberType } from '../types/member'
 import { MemberScheduleRequest } from '../types/schedule'
 
-export const schedule = async (member: Member) => {
+export const schedule = async (member: MemberType) => {
   const reqData: MemberScheduleRequest = {
     id: member.id,
     name: member.name ?? '',
@@ -16,7 +16,7 @@ export const schedule = async (member: Member) => {
   })
 }
 
-export const refresh = async (member: Member) => {
+export const refresh = async (member: MemberType) => {
   const reqData = {
     id: member.id ?? '',
     name: member.name ?? '',

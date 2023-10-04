@@ -18,7 +18,7 @@ import { StorageObject } from 'components/storage/types/obj'
 import { Category } from 'components/category/types/category'
 
 export const MemberEditorSidebar = (props: {
-  member: Member
+  member: MemberType
   categories: Category[]
   isPreview: boolean
   onSetPreviewMode: (state: boolean) => void

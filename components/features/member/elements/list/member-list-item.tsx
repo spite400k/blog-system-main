@@ -10,7 +10,7 @@ import { useTheme } from 'shared/hooks/useTheme'
 import { moduler } from 'shared/utils/styles'
 import { getDateText, getTimeText } from 'shared/utils/date'
 
-export const MemberListItem = (props: { member: Member }) => {
+export const MemberListItem = (props: { member: MemberType }) => {
   const { theme } = useTheme()
 
   return (
@@ -145,7 +145,7 @@ export const MemberListItem = (props: { member: Member }) => {
   )
 }
 
-export const _MemberListItem = (props: { member: Member }) => {
+export const _MemberListItem = (props: { member: MemberType }) => {
   const { theme } = useTheme()
   return (
     <Link href={`/member/${props.member.id}`}>
@@ -214,7 +214,7 @@ export const _MemberListItem = (props: { member: Member }) => {
   )
 }
 
-const MemberListStateMaker = (props: { member: Member }) => {
+const MemberListStateMaker = (props: { member: MemberType }) => {
   const now = new Date()
   const isReleased =
     props.member.releaseDate.toDate() < now && props.member.publish

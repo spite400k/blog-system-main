@@ -5,7 +5,7 @@ import MdImage from './MdImage'
 import { MemberType } from '../../types/member'
 import matter from 'gray-matter'
 
-export const MemberMarkdown = (props: { member: Member }) => {
+export const MemberMarkdown = (props: { member: MemberType }) => {
   const { content } = matter(props.member.markdown ?? '')
   return (
     <ReactMarkdown
