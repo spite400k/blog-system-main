@@ -1,49 +1,64 @@
-import { MemberType } from 'member/types/member';
-import dynamic from 'next/dynamic';
-const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
+'use client'
+import React from 'react'
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend
+} from 'chart.js'
+import { Radar } from 'react-chartjs-2'
+import styles from './chart.module.css'
+import { MemberType } from '@/types/member'
+
+ChartJS.register(
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend
+)
 
 // https://swamplabo.com/react-chart-libraries/
 
-function ApexChartRader(props: {member: MemberType}) {
-
-  const series = [
-    {
-      name: '能力パラメータ',
-      data: [
-        props.member.param1, 
-        props.member.param2, 
-        props.member.param3, 
-        props.member.param4, 
-        props.member.param5, 
-        props.member.param6],
-    },
-  ];
-  const options = {
-    chart: {
-      id: 'simple-rader',
-    },
-    xaxis: {
-      categories: ['Tactics', 'Kick', 'Dribble', 'Ball Control', 'Physical', 'Carrer'],
-    },
-    colors: ['#FF4560'],
-    dataLabels: {
-      enabled: true
-    },
-    radar: {
-      size: 300,
-      polygons: {
-        strokeColors: '#e9e9e9',
-        fill: {
-          colors: ['#f8f8f8', '#fff']
-        }
+function ApexChartRader(props: { member: MemberType }) {
+  const data = {
+    labels: [
+      'Tactics',
+      'Kick',
+      'Dribble',
+      'Ball Control',
+      'Physical',
+      'Carrer'
+    ],
+    datasets: [
+      {
+        label: '能力パラメータ',
+        data: [
+          props.member.param1,
+          props.member.param2,
+          props.member.param3,
+          props.member.param4,
+          props.member.param5,
+          props.member.param6
+        ],
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
       }
-    },
-    
-  };
+    ]
+  }
 
-  return <ReactApexChart options={options} type="radar" series={series} width={'130%'} height={350}/>;
+  return (
+    <>
+      <div className={styles.piechart}>
+        <Radar data={data} />
+      </div>
+    </>
+  )
 }
 
-export default ApexChartRader;
+export default ApexChartRader

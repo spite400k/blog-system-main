@@ -1,0 +1,6 @@
+.piechart {
+  position: relative;
+  box-sizing: border-box;
+  height: 30vh;
+  width: 30vw;
+}
