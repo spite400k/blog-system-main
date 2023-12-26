@@ -17,29 +17,35 @@ import { SelectBox } from 'shared/elements/field/selectBox'
 
 import TextareaAutosize from 'react-textarea-autosize'
 
-const options = [
-  { value: 'FW', label: 'FW フォワード' },
-  { value: 'MF', label: 'MF ミッドフィルダ' },
-  { value: 'DF', label: 'DF ディフェンダ' },
-  { value: 'OTHERS', label: 'その他' }
+const optionsPosition = [
+  { value: 'FW', label: 'FW フォワード', positionCategory: 'FW' },
+  { value: 'CFW', label: 'CFW センターフォワード', positionCategory: 'FW' },
+  { value: 'LW', label: 'LW 左ウィング', positionCategory: 'FW' },
+  { value: 'RW', label: 'RW 右ウィング', positionCategory: 'FW' },
+  { value: '', label: '－－－－－－－－－', positionCategory: '' },
+  { value: 'MF', label: 'MF ミッドフィルダ', positionCategory: 'MF' },
+  { value: 'TOP', label: 'TOP トップ下', positionCategory: 'MF' },
+  { value: 'CH', label: 'CH センターハーフ', positionCategory: 'MF' },
+  { value: 'LSH', label: 'LIH 左サイドハーフ', positionCategory: 'MF' },
+  { value: 'RSH', label: 'RIH 右サイドハーフ', positionCategory: 'MF' },
+  { value: 'LWB', label: 'LIH 左サイドハーフ', positionCategory: 'MF' },
+  { value: 'RSH', label: 'RIH 右サイドハーフ', positionCategory: 'MF' },
+  { value: 'LFW', label: 'LFW 左ウィング', positionCategory: 'MF' },
+  { value: 'RFW', label: 'RFW 右ウィング', positionCategory: 'MF' },
+  { value: '', label: '－－－－－－－－－', positionCategory: '' },
+  { value: 'DF', label: 'DF ディフェンダ', positionCategory: 'DF' },
+  { value: 'CB', label: 'CB センターバック', positionCategory: 'DF' },
+  { value: 'LSB', label: 'LSB 左サイドバック', positionCategory: 'DF' },
+  { value: 'RSB', label: 'RSB 右サイドバック', positionCategory: 'DF' },
+  { value: '', label: '－－－－－－－－－', positionCategory: '' },
+  { value: 'GK', label: 'ゴールキーパー', positionCategory: 'GK' },
+  { value: '', label: '－－－－－－－－－', positionCategory: '' },
+  { value: 'OTHERS', label: 'その他', positionCategory: 'OTHERS' }
 ]
 
-const optionsFW = [
-  { value: 'FW', label: 'FW フォワード' },
-  { value: 'CFW', label: 'CFW センターフォワード' },
-  { value: 'LW', label: 'LW 左ウィング' },
-  { value: 'RW', label: 'RW 右ウィング' }
-]
-const optionsMF = [
-  { value: 'MF', label: 'MF ミッドフィルダ' },
-  { value: 'TOP', label: 'TOP トップ下' },
-  { value: 'CH', label: 'CH センターハーフ' },
-  { value: 'LSH', label: 'LIH 左サイドハーフ' },
-  { value: 'RSH', label: 'RIH 右サイドハーフ' },
-  { value: 'LWB', label: 'LIH 左サイドハーフ' },
-  { value: 'RSH', label: 'RIH 右サイドハーフ' },
-  { value: 'LFW', label: 'LFW 左ウィング' },
-  { value: 'RFW', label: 'RFW 右ウィング' }
+const optionsFoot = [
+  { value: '右', label: '右' },
+  { value: '左', label: '左' }
 ]
 
 export const MemberEditor = (props: {
@@ -70,54 +76,6 @@ export const MemberEditor = (props: {
     setMarkdown(props.member.markdown)
   }, [uploadInfo])
 
-  const handleChange = (selectedOption: any) => {
-    console.log(`Option selected:`, selectedOption)
-  }
-
-  const SelectBoxPosition = (selected: string) => {
-    if (selected === 'FW') {
-      console.log('FWだよ')
-      return (
-        <SelectBox
-          values={optionsFW}
-          defaultValue={
-            optionsFW.filter((c) => c.value === props.member.positionDetail)
-              .length > 0
-              ? optionsFW.filter(
-                  (c) => c.value === props.member.positionDetail
-                )[0]
-              : optionsFW[0]
-          }
-          onChange={(s) => {
-            const detail = optionsFW.filter((c) => c.value === s)[0]
-            props.member.positionDetail = detail ? detail.value : ''
-          }}
-        />
-      )
-    } else if (selected === 'MF') {
-      console.log('MFだよ')
-      return (
-        <SelectBox
-          values={optionsMF}
-          defaultValue={
-            optionsMF.filter((c) => c.value === props.member.positionDetail)
-              .length > 0
-              ? optionsMF.filter(
-                  (c) => c.value === props.member.positionDetail
-                )[0]
-              : optionsMF[0]
-          }
-          onChange={(s) => {
-            const detail = optionsMF.filter((c) => c.value === s)[0]
-            props.member.positionDetail = detail ? detail.value : ''
-          }}
-        />
-      )
-    } else {
-      console.log('その他だよ')
-      return <></>
-    }
-  }
   return (
     <MemberEditorBox background={theme.color.gray06}>
       {/* 記入領域 */}
@@ -259,21 +217,25 @@ export const MemberEditor = (props: {
                 >
                   <TopField title={''}>
                     <SelectBox
-                      values={options}
+                      values={optionsPosition}
                       defaultValue={
-                        options.filter((c) => c.value === props.member.position)
-                          .length > 0
-                          ? options.filter(
+                        optionsPosition.filter(
+                          (c) => c.value === props.member.position
+                        ).length > 0
+                          ? optionsPosition.filter(
                               (c) => c.value === props.member.position
                             )[0]
-                          : options[0]
+                          : optionsPosition[0]
                       }
                       onChange={(s) => {
-                        const category = options.filter((c) => c.value === s)[0]
-                        props.member.position = category.value
+                        const position = optionsPosition.filter(
+                          (c) => c.value === s
+                        )[0]
+                        props.member.position = position.value
+                        props.member.positionCategory =
+                          position.positionCategory
                       }}
                     />
-                    {SelectBoxPosition(props.member.position ?? '')}
                   </TopField>
                 </BorderBox>
               </FlexBox>
@@ -297,17 +259,25 @@ export const MemberEditor = (props: {
                   borderWidth={'2px'}
                   borderStyle={'solid'}
                   radius={'1px'}
-                  overflow={'hidden'}
+                  // overflow={'hidden'}
                 >
                   <TopField title={''}>
-                    <Input
-                      width={'100%'}
-                      padding={'1em 0.5em'}
-                      background={theme.color.base}
-                      border={{ radius: '6px' }}
-                      defaultValue={props.member.foot}
-                      onChange={(e) => (props.member.foot = e.target.value)}
-                    />{' '}
+                    <SelectBox
+                      values={optionsFoot}
+                      defaultValue={
+                        optionsFoot.filter(
+                          (c) => c.value === props.member.position
+                        ).length > 0
+                          ? optionsFoot.filter(
+                              (c) => c.value === props.member.position
+                            )[0]
+                          : optionsFoot[0]
+                      }
+                      onChange={(s) => {
+                        const foot = optionsFoot.filter((c) => c.value === s)[0]
+                        props.member.foot = foot.value
+                      }}
+                    />
                   </TopField>
                 </BorderBox>
               </FlexBox>

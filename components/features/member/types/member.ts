@@ -6,7 +6,7 @@ export type MemberType = {
   name?: string
   nameEnglish?: string
   position?: string
-  positionDetail: string
+  positionCategory?: string
   number?: string
   thumbnail?: StorageObject
 
