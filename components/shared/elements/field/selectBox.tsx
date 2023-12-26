@@ -1,9 +1,9 @@
-import { SetStateAction, useState } from 'react'
+import { useState } from 'react'
 import { useTheme } from 'shared/hooks/useTheme'
 import { BorderBox } from '../box/border'
 import { ColorBox } from '../box/color'
 import { FlexBox } from '../box/flex'
-import Select, { SingleValue } from 'react-select'
+import Select from 'react-select'
 
 export const SelectBox = (props: {
   values: { value: string; label: string }[]
@@ -17,6 +17,7 @@ export const SelectBox = (props: {
     setValue(e ? e.value : '')
     props.onChange(e ? e.value : '')
   }
+  console.log(value)
 
   return (
     <FlexBox way={'column'} width={'100%'} gap={'6px'}>

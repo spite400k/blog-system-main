@@ -26,7 +26,7 @@ const Home: NextPage = () => {
     if (!member.position || member.position === undefined)
       return otherMembers.push(member)
 
-    if (member.positionCategory != undefined) {
+    if (member.positionCategory !== undefined) {
       if (member.positionCategory.includes('FW')) return FWMembers.push(member)
       if (member.positionCategory.includes('DF')) return DFMembers.push(member)
       if (member.positionCategory.includes('MF')) return MFMembers.push(member)
