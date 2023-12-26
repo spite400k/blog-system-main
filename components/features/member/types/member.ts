@@ -6,18 +6,19 @@ export type MemberType = {
   name?: string
   nameEnglish?: string
   position?: string
+  positionDetail: string
   number?: string
   thumbnail?: StorageObject
 
-  birthday? : string
-  foot? : string
-  footSize? : number
-  height? : number
-  weight? : number
+  birthday?: string
+  foot?: string
+  footSize?: number
+  height?: number
+  weight?: number
 
-  playerExplain ? : string
+  playerExplain?: string
 
-  bloodType? : string
+  bloodType?: string
 
   markdown?: string
 
@@ -34,5 +35,4 @@ export type MemberType = {
   param4: number
   param5: number
   param6: number
-
 }
