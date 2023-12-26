@@ -11,7 +11,7 @@ import {
 } from 'chart.js'
 import { Radar } from 'react-chartjs-2'
 import styles from './chart.module.css'
-import { MemberType } from '@/types/member'
+import { MemberType } from 'member/types/member'
 
 ChartJS.register(
   RadialLinearScale,
