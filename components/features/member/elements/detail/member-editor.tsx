@@ -265,11 +265,10 @@ export const MemberEditor = (props: {
                     <SelectBox
                       values={optionsFoot}
                       defaultValue={
-                        optionsFoot.filter(
-                          (c) => c.value === props.member.position
-                        ).length > 0
+                        optionsFoot.filter((c) => c.value === props.member.foot)
+                          .length > 0
                           ? optionsFoot.filter(
-                              (c) => c.value === props.member.position
+                              (c) => c.value === props.member.foot
                             )[0]
                           : optionsFoot[0]
                       }
