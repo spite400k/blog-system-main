@@ -6,7 +6,7 @@ import { Header } from 'shared/elements/header/header'
 export const PostHomeHeader = () => {
   const router = useRouter()
   return (
-    <Header name={'ブログ投稿'} subName={'POST'}>
+    <Header name={'ニュース投稿'} subName={'POST'}>
       <Button
         onClick={() => {
           createPost().then((p) => {
