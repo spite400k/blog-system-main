@@ -78,7 +78,7 @@ export const MemberEditorSidebar = (props: {
         shrink={'0'}
       >
         <FlexBox way={'column'} width={'100%'} gap={'1em'}>
-          <TopField title={'選手の写真'}></TopField>
+          <TopField title={'選手の写真カード'}></TopField>
           <Upload
             folder={'thumbnail'}
             name={thumbnail ? thumbnail.name : undefined}

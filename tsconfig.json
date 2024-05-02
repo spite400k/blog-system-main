@@ -25,7 +25,8 @@
       "gameMovie/*": ["components/features/post/*"],
       "member/*": ["components/features/member/*"]
     },
-    "incremental": true
+    "incremental": true,
+    "downlevelIteration": true // 追加
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

@@ -9,6 +9,7 @@ export type MemberType = {
   positionCategory?: string
   number?: string
   thumbnail?: StorageObject
+  memberImages?: StorageObject[]
 
   birthday?: string
   foot?: string

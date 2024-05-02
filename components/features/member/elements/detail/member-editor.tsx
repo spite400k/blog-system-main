@@ -12,10 +12,14 @@ import { FlexBox } from 'shared/elements/box/flex'
 import { Word } from 'shared/elements/text/common'
 import { moduler } from 'shared/utils/styles'
 import { Input } from 'shared/elements/field/input'
-import ApexChartRader from 'shared/elements/chart/rader'
+// import ApexChartRader from 'shared/elements/chart/rader'
 import { SelectBox } from 'shared/elements/field/selectBox'
+import { UploadMulti } from 'shared/elements/field/uploadMulti'
 
-import TextareaAutosize from 'react-textarea-autosize'
+// import TextareaAutosize from 'react-textarea-autosize'
+// import { Upload } from 'shared/elements/field/upload'
+// import { StorageObject } from 'components/storage/types/obj'
+// import { Slider } from 'shared/elements/slider/slider'
 
 const optionsPosition = [
   { value: 'FW', label: 'FW フォワード', positionCategory: 'FW' },
@@ -43,10 +47,10 @@ const optionsPosition = [
   { value: 'OTHERS', label: 'その他', positionCategory: 'OTHERS' }
 ]
 
-const optionsFoot = [
-  { value: '右', label: '右' },
-  { value: '左', label: '左' }
-]
+// const optionsFoot = [
+//   { value: '右', label: '右' },
+//   { value: '左', label: '左' }
+// ]
 
 export const MemberEditor = (props: {
   member: MemberType
@@ -242,6 +246,25 @@ export const MemberEditor = (props: {
             </ColorBox>
 
             <ColorBox
+              background={theme.color.gray06}
+              width={'100%'}
+              padding={'1em'}
+              radius={'16px'}
+              shrink={'0'}
+            >
+              <FlexBox way={'column'} width={'100%'} gap={'1em'}>
+                <TopField title={'選手の写真'}></TopField>
+                {/* <Upload
+                  folder={'image'}
+                  name={image ? image.name : undefined}
+                  url={image ? image.url : undefined}
+                  onUpload={(info) => setMemberImages(info)}
+                /> */}
+                <UploadMulti images={null} />
+              </FlexBox>
+            </ColorBox>
+
+            {/* <ColorBox
               background={theme.color.base}
               width={'100%'}
               padding={'1em'}
@@ -316,8 +339,9 @@ export const MemberEditor = (props: {
                   </TopField>
                 </BorderBox>
               </FlexBox>
-            </ColorBox>
+            </ColorBox> */}
 
+            {/*             
             <ColorBox
               background={theme.color.base}
               width={'100%'}
@@ -478,7 +502,7 @@ export const MemberEditor = (props: {
                     radius={'1px'}
                     overflow={'hidden'}
                   >
-                    <TopField title={'　Tactics'}>
+                    <TopField title={'Tactics'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -492,7 +516,7 @@ export const MemberEditor = (props: {
                       />{' '}
                     </TopField>
 
-                    <TopField title={'　Kick'}>
+                    <TopField title={'Kick'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -506,7 +530,7 @@ export const MemberEditor = (props: {
                       />{' '}
                     </TopField>
 
-                    <TopField title={'　Dribble'}>
+                    <TopField title={'Dribble'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -520,7 +544,7 @@ export const MemberEditor = (props: {
                       />{' '}
                     </TopField>
 
-                    <TopField title={'　Ball control'}>
+                    <TopField title={'Ball control'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -534,7 +558,7 @@ export const MemberEditor = (props: {
                       />{' '}
                     </TopField>
 
-                    <TopField title={'　Physical'}>
+                    <TopField title={'Physical'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -548,7 +572,7 @@ export const MemberEditor = (props: {
                       />{' '}
                     </TopField>
 
-                    <TopField title={'　Carrer'}>
+                    <TopField title={'Carrer'}>
                       <Input
                         width={'50%'}
                         padding={'1em 0.5em'}
@@ -566,7 +590,7 @@ export const MemberEditor = (props: {
                   <ApexChartRader member={props.member} />
                 </FlexBox>
               </FlexBox>
-            </ColorBox>
+            </ColorBox> */}
           </ColorBox>
         </ColorBox>
       </BorderBox>
